@@ -5,9 +5,9 @@
     <classes>
       <class name="TaskLogin.LoginTasknew1">
         <methods>
-          <include name="checkDeleteButtonisworkornotofNotification"/>
           <include name="teardown"/>
           <include name="VerifyLoginButtonisworkornot"/>
+          <include name="checkDeleteButtonisworkornotwhennotreadofNotification"/>
         </methods>
       </class> <!-- TaskLogin.LoginTasknew1 -->
     </classes>

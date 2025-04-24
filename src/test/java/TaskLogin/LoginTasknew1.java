@@ -260,9 +260,15 @@ public class LoginTasknew1 {
 	    // Get the list of notification elements
 	    List<WebElement> elements = driver.findElements(By.xpath("//p[@class='text-sm font-medium text-gray-900']"));
 	    System.out.println("The size is " + elements.size());
+	    
+	    if(!elements.isEmpty() && elements.size()<=2)
+	    {
+	      System.out.println("The notification are shown up but scroll not visible");
+	    }
+	    
 
 	    // Scroll to the last notification element if it exists
-	    if (!elements.isEmpty()) {
+	    else if (!elements.isEmpty() && elements.size()>2 ) {
 	    	
 	    	// It is is a standard Java way of getting the last element from a list.
 	        WebElement lastElement = elements.get(elements.size() - 1);
@@ -319,9 +325,11 @@ public class LoginTasknew1 {
 	
 	//check Delete------
 	
+	//Updating delete task---
 	
+	//case-1:When not read direct delete
 	@Test
-	void checkDeleteButtonisworkornotofNotification() throws InterruptedException
+	void checkDeleteButtonisworkornotwhennotreadofNotification() throws InterruptedException
 	{
 		 Thread.sleep(1000);
 
@@ -352,6 +360,60 @@ public class LoginTasknew1 {
 	       if(initialCount== updatedCount+1 )System.out.println(" NotifyCount decrease by 1 after deleting the notification.");
 	       else System.out.println("Delete not work!!");
 	}
+	
+
+	//case 2 when read then delete---
+	
+	@Test
+	void checkDeleteButtonWorksAfterRead() throws InterruptedException {
+	    Thread.sleep(1000); // Wait for the page to fully load
+
+	    // Get the initial unread notification count
+	    WebElement badgeBefore = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
+	    int initialCount = Integer.parseInt(badgeBefore.getText().trim());
+	    System.out.println("Initial unread count: " + initialCount);
+
+	    // Open the notification panel
+	    driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
+	    Thread.sleep(1000);
+
+	    // Click the 3-dot icon to open options for the first notification
+	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
+	    Thread.sleep(500);
+
+	    // Mark the notification as Read
+	    driver.findElement(By.xpath("//button[normalize-space()='Read']")).click();
+	    Thread.sleep(1000); // Wait for the UI update
+
+	    // Open the 3-dot menu again to delete
+	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
+	    Thread.sleep(500);
+
+	    
+	    //again one more time
+	   
+	    // Open the 3-dot menu again to delete
+	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
+	    Thread.sleep(500);
+
+	    // Click "Delete"
+	    driver.findElement(By.xpath("(//button[normalize-space()='Delete'])[1]")).click();
+	    Thread.sleep(1000); // Wait for UI update
+
+	    // Get the updated unread notification count
+	    WebElement badgeAfter = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
+	    int updatedCount = Integer.parseInt(badgeAfter.getText().trim());
+	    System.out.println("Unread count after deleting: " + updatedCount);
+
+	    // Check if count decreased only once (when marked as read)
+	    if (initialCount == updatedCount + 1) {
+	        System.out.println("Notification count decreased by 1 after marking as read, and stayed same after delete.");
+	    } else {
+	        System.out.println("Notification count did not update correctly after delete.");
+	    }
+	}
+
+	
 	
 	
 	
