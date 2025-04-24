@@ -390,7 +390,7 @@ public class LoginTasknew1 {
 	    Thread.sleep(500);
 
 	    
-	    //again one more time
+	   
 	   
 	    // Open the 3-dot menu again to delete
 	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
