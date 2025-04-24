@@ -336,7 +336,7 @@ public class LoginTasknew1 {
 	        // Get the initial unread notification count
 	        WebElement badgeBefore = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
 	        int initialCount = Integer.parseInt(badgeBefore.getText().trim());
-	        System.out.println("Initial unread count: " + initialCount);
+	        System.out.println("Initial Unread count: " + initialCount);
 
 	        // Click the notification bell icon to open the panel
 	        driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();

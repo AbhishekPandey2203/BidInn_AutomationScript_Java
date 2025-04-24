@@ -2,20 +2,20 @@
 <testng-results ignored="8" total="9" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-24T16:02:50 IST" name="Default suite" finished-at="2025-04-24T16:03:02 IST" duration-ms="12119">
+  <suite started-at="2025-04-24T16:28:11 IST" name="Default suite" finished-at="2025-04-24T16:28:24 IST" duration-ms="12632">
     <groups>
     </groups>
-    <test started-at="2025-04-24T16:02:50 IST" name="Default test" finished-at="2025-04-24T16:03:02 IST" duration-ms="12119">
+    <test started-at="2025-04-24T16:28:11 IST" name="Default test" finished-at="2025-04-24T16:28:24 IST" duration-ms="12632">
       <class name="TaskLogin.LoginTasknew1">
-        <test-method is-config="true" signature="VerifyLoginButtonisworkornot()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:02:50 IST" name="VerifyLoginButtonisworkornot" finished-at="2025-04-24T16:02:57 IST" duration-ms="7521" status="PASS">
+        <test-method is-config="true" signature="VerifyLoginButtonisworkornot()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:28:11 IST" name="VerifyLoginButtonisworkornot" finished-at="2025-04-24T16:28:19 IST" duration-ms="8104" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyLoginButtonisworkornot -->
-        <test-method signature="checkDeleteButtonisworkornotwhennotreadofNotification()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:02:57 IST" name="checkDeleteButtonisworkornotwhennotreadofNotification" finished-at="2025-04-24T16:03:01 IST" duration-ms="4148" status="PASS">
+        <test-method signature="checkDeleteButtonisworkornotwhennotreadofNotification()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:28:19 IST" name="checkDeleteButtonisworkornotwhennotreadofNotification" finished-at="2025-04-24T16:28:24 IST" duration-ms="4116" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkDeleteButtonisworkornotwhennotreadofNotification -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:03:01 IST" name="teardown" finished-at="2025-04-24T16:03:02 IST" duration-ms="398" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:TaskLogin.LoginTasknew1@26794848]" started-at="2025-04-24T16:28:24 IST" name="teardown" finished-at="2025-04-24T16:28:24 IST" duration-ms="367" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
