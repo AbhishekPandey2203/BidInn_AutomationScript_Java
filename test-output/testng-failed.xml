@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TaskLogin.LoginTasknew1">
+      <class name="verifynavigationandhotellistdetail.verifyhotellistdetail">
         <methods>
+          <include name="verifychangelocationgivenewlocationhotel"/>
+          <include name="entercityintput"/>
           <include name="teardown"/>
-          <include name="VerifyLoginButtonisworkornot"/>
-          <include name="checkDeleteButtonisworkornotwhennotreadofNotification"/>
         </methods>
-      </class> <!-- TaskLogin.LoginTasknew1 -->
+      </class> <!-- verifynavigationandhotellistdetail.verifyhotellistdetail -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

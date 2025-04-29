@@ -54,23 +54,24 @@ public class Searchbox {
         WebElement cityOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Haridwar']")));
         cityOption.click();
 
+
         // Calendar choose - Check-in
         WebElement checkIn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Check-in']")));
         checkIn.click();
+        
+        //click on the next month calender
+        WebElement nextmonthclick=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='rdrNextPrevButton rdrNextButton']")));
+        nextmonthclick.click();
+        
+        
 
         WebElement checkInDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[3]")));
         checkInDate.click();
 
-        // Calendar choose - Check-out
-        WebElement checkOut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Check-out']")));
-        checkOut.click();
-
-        // Click again if needed
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Check-out']"))).click();
-
-        WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[5]")));
+        
+        WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[8]")));
         checkOutDate.click();
-
+        
         // Guest choose
         WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
         guestIcon.click();

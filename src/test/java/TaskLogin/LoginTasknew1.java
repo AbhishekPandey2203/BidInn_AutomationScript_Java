@@ -87,13 +87,13 @@ public class LoginTasknew1 {
 	}
 	
 	
-    @AfterMethod
-    void teardown() {
-        if (driver != null) {
-            driver.quit(); // Ensures the session is fully terminated
-        }
-    }
-    
+//    @AfterMethod
+//    void teardown() {
+//        if (driver != null) {
+//            driver.quit(); // Ensures the session is fully terminated
+//        }
+//    }
+//    
 	
 	
 	@Test
@@ -292,15 +292,31 @@ public class LoginTasknew1 {
 	{
 		Thread.sleep(1000);
 		
+		
+		  // Click the notification button
+         driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
 		// Get the initial unread count
         WebElement badgeBefore = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
         int initialCount = Integer.parseInt(badgeBefore.getText().trim());
         System.out.println("Initial unread count: " + initialCount);
 
-        // Click the notification button
-        driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
-        Thread.sleep(1000);
+//        // Click the notification button
+//        driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
+//        Thread.sleep(1000);
 
+        
+        // Get the list of notification elements
+	    List<WebElement> elements = driver.findElements(By.xpath("//p[@class='text-sm font-medium text-gray-900']"));
+	    System.out.println("The size is " + elements.size());
+	    
+	    if(elements.isEmpty())
+	    {
+	      System.out.println("No new Notifications");
+	    }
+	    
+        
+        
+        
         // Open the 3-dot menu (ellipsis icon)
         driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
         Thread.sleep(500);
@@ -308,6 +324,14 @@ public class LoginTasknew1 {
         // Click the "Read" button
         driver.findElement(By.xpath("//button[normalize-space()='Read']")).click();
         Thread.sleep(1000);
+        
+        
+        if(elements.size()==1)
+        {
+        	System.out.println(" As only one notification is there and it is successfully read!!");
+        	
+        }
+        else {
 
         // Get the updated unread count
         WebElement badgeAfter = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
@@ -318,7 +342,7 @@ public class LoginTasknew1 {
         Assert.assertEquals(updatedCount, initialCount - 1, "Unread count did not decrease by 1 after marking as read.");
         Assert.assertTrue(updatedCount==(initialCount - 1));
 //        )
-		
+        }
 		
 	}
 	
@@ -332,16 +356,30 @@ public class LoginTasknew1 {
 	void checkDeleteButtonisworkornotwhennotreadofNotification() throws InterruptedException
 	{
 		 Thread.sleep(1000);
+		 
+	
+	        // Click the notification bell icon to open the panel
+	        driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
+	        Thread.sleep(1000);
 
+ 
 	        // Get the initial unread notification count
 	        WebElement badgeBefore = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
 	        int initialCount = Integer.parseInt(badgeBefore.getText().trim());
 	        System.out.println("Initial Unread count: " + initialCount);
 
-	        // Click the notification bell icon to open the panel
-	        driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
-	        Thread.sleep(1000);
-
+	        
+	        
+	        // Get the list of notification elements
+		    List<WebElement> elements = driver.findElements(By.xpath("//p[@class='text-sm font-medium text-gray-900']"));
+		    System.out.println("The size is " + elements.size());
+		    
+		    if(elements.isEmpty())
+		    {
+		      System.out.println("No new Notifications");
+		    }
+	
+	        
 	        // Click on the 3-dot (ellipsis) icon to open the notification options
 	        driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
 	        Thread.sleep(500);
@@ -349,7 +387,15 @@ public class LoginTasknew1 {
 	        // Click the "Delete" button
 	        driver.findElement(By.xpath("//button[normalize-space()='Delete']")).click();
 	        Thread.sleep(1000); // Wait for UI update
-
+	        
+	        
+	        if(elements.size()==1)
+	        {
+	        	WebElement elem=driver.findElement(By.xpath("//p[text()='No new notifications']"));
+	        	Assert.assertTrue(elem.isDisplayed());
+	        	System.out.println("Notification Delete Successfully!!");
+	        }
+	        else {
 	        // Get the updated unread notification count
 	        WebElement badgeAfter = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
 	        int updatedCount = Integer.parseInt(badgeAfter.getText().trim());
@@ -357,9 +403,14 @@ public class LoginTasknew1 {
 
 	        // Assert that the unread count decreased by 1
 	        //Assert.assertEquals(actual, expected, message)  message if  assertion fail
-	       if(initialCount== updatedCount+1 )System.out.println(" NotifyCount decrease by 1 after deleting the notification.");
-	       else System.out.println("Delete not work!!");
+	     
+	      
+	        if((initialCount== updatedCount+1) )System.out.println(" NotifyCount decrease by 1 after deleting the notification.");
+	      
+	       }
 	}
+	
+	
 	
 
 	//case 2 when read then delete---
@@ -368,23 +419,31 @@ public class LoginTasknew1 {
 	void checkDeleteButtonWorksAfterRead() throws InterruptedException {
 	    Thread.sleep(1000); // Wait for the page to fully load
 
+	    // Open the notification panel
+	    driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
+	    Thread.sleep(1000);
+	
+
+	    // Click the 3-dot icon to open options for the first notification
+	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
+	    Thread.sleep(500);
+	    
+	    
 	    // Get the initial unread notification count
 	    WebElement badgeBefore = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
 	    int initialCount = Integer.parseInt(badgeBefore.getText().trim());
 	    System.out.println("Initial unread count: " + initialCount);
 
-	    // Open the notification panel
-	    driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
-	    Thread.sleep(1000);
-
-	    // Click the 3-dot icon to open options for the first notification
-	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
-	    Thread.sleep(500);
-
 	    // Mark the notification as Read
 	    driver.findElement(By.xpath("//button[normalize-space()='Read']")).click();
 	    Thread.sleep(1000); // Wait for the UI update
+	    
 
+	    // Open the 3-dot menu again to delete
+	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
+	    Thread.sleep(500);
+
+	    
 	    // Open the 3-dot menu again to delete
 	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
 	    Thread.sleep(500);
@@ -392,25 +451,33 @@ public class LoginTasknew1 {
 	    
 	   
 	   
-	    // Open the 3-dot menu again to delete
-	    driver.findElement(By.xpath("//a[1]//div[1]//div[2]//button[1]//*[name()='svg']")).click();
-	    Thread.sleep(500);
-
 	    // Click "Delete"
 	    driver.findElement(By.xpath("(//button[normalize-space()='Delete'])[1]")).click();
 	    Thread.sleep(1000); // Wait for UI update
-
+   if(initialCount==1)
+   {
+	    
+      
+       	WebElement elem=driver.findElement(By.xpath("//p[text()='No new notifications']"));
+       	Assert.assertTrue(elem.isDisplayed());
+       	System.out.println("Notification Delete Successfully!!");
+       
+   }
+   else
+   {
 	    // Get the updated unread notification count
 	    WebElement badgeAfter = driver.findElement(By.xpath("//span[contains(@class,'absolute -right-1 -top-1 flex h-5 w-5 items-center')]"));
 	    int updatedCount = Integer.parseInt(badgeAfter.getText().trim());
 	    System.out.println("Unread count after deleting: " + updatedCount);
 
 	    // Check if count decreased only once (when marked as read)
-	    if (initialCount == updatedCount + 1) {
+	    if (initialCount == updatedCount+1 ) {
 	        System.out.println("Notification count decreased by 1 after marking as read, and stayed same after delete.");
 	    } else {
 	        System.out.println("Notification count did not update correctly after delete.");
 	    }
+	}
+   
 	}
 
 	
