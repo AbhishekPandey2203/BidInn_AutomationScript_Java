@@ -93,12 +93,12 @@ public class verifyhotellistdetail {
 	
 	
 	
-//	   @AfterMethod
-//	    void teardown() {
-//	        if (driver != null) {
-//	            driver.quit(); // Ensures the session is fully terminated
-//	        }
-//	    }
+	   @AfterMethod
+	    void teardown() {
+	        if (driver != null) {
+	            driver.quit(); // Ensures the session is fully terminated
+	        }
+	    }
 ////----------------------------------- New City Case
 	
 	@Test
@@ -878,6 +878,13 @@ void twelevepercrating() throws InterruptedException
 	  
 	
   }
+  
+  
+  
+  
+  
+  
+  
   
   
 

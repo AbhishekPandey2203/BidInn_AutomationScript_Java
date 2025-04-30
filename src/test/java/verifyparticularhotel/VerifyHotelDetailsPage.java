@@ -1,16 +1,15 @@
 package verifyparticularhotel;
 
+import static org.testng.Assert.assertEquals;
+
 import java.time.Duration;
-import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,79 +18,80 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
+//-----****Updating the Hotel Detail Page--29-05-25****
 // 2APRIL-2025
 public class VerifyHotelDetailsPage {
 	  
 	WebDriver driver;
 	
 	
-	@BeforeTest
-	void searchfirst() throws InterruptedException
-	{
-		driver=new ChromeDriver();
-		driver.get("https://www.bidinn.in/");
-		driver.manage().window().maximize();
+ @BeforeTest
+void enterHotelname() throws InterruptedException
+{       
+
+		    driver=new ChromeDriver();
+			driver.get("https://www.bidinn.in/");
+			driver.manage().window().maximize();
 			
-			//--------------- searchbox
-			//hotel name insertion
-		driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("test");
-		Thread.sleep(500);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class=\"MuiAutocomplete-endAdornment mui-mxlkbn\"]")));
-	    element.click();
-				        
-     driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("test");
-					  
-	   Thread.sleep(1000);
-			       
-	 driver.findElement(By.xpath("//p[text()='Hotel Eterna Primavera(Test_Hotel)']")).click();
-			         
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			  // City Name insertion.
+	        String dumy = "test";
+	        WebElement HotelInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
+	        HotelInput.sendKeys(dumy);
 
-			         
+	        WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel)']")));
+	        HotelOption.click();
 
-		//calender chose
-		 driver.findElement(By.xpath("//div[@class='MuiBox-root mui-1jke4yk']")).click();
-	driver.findElement(By.xpath("//button[@class='rdrNextPrevButton rdrNextButton']")).click();
-		           
-			           //now choose the date start--by default end also select 
-      driver.findElement(By.xpath("(//span[@class='rdrDayNumber'])[6]")).click();
+	        // Calendar choose - Check-in
+	        WebElement checkIn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Check-in']")));
+	        checkIn.click();
+	        
+	        //click on the next month calender
+	        WebElement nextmonthclick=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='rdrNextPrevButton rdrNextButton']")));
+	        nextmonthclick.click();
+	        
+	        
 
-			           //------guest choose
-		           //first click
-		           
-	 driver.findElement(By.xpath("//p[text()='2 Guests, 1 Room']")).click();
-			           
-	   //set the guest count---
-  driver.findElement(By.xpath("(//button[@class='text-gray-400 focus:outline-none'][normalize-space()='+'])[1]")).click();           
-		   driver.findElement(By.xpath("(//button[@class='text-gray-400 focus:outline-none'][normalize-space()='+'])[2]")).click(); 
-			   driver.findElement(By.xpath("(//button[@class='text-gray-400 focus:outline-none'][normalize-space()='+'])[3]")).click(); 
-			           
-		  Thread.sleep(1000);
-			           
-		  driver.findElement(By.xpath("//button[text()='Done']")).click();
-			           
-			           
-			           //click the search button
-		  driver.findElement(By.xpath("//button[text()=\"Search\"]")).click();
-			            
-			           
-			           
-			           
-//		//----------------------new page open-----
-			           	
+	        WebElement checkInDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[3]")));
+	        checkInDate.click();
+
+	        
+	        WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[8]")));
+	        checkOutDate.click();
+
+	        // Guest choose
+	        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+	        guestIcon.click();
+
+	        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+	        roomGuestDropdown.click();
+
+	        // Increment buttons (room, adult, child)
+	        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='text-gray-400 focus:outline-none'])[2]"))).click();
+	        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='text-gray-400 focus:outline-none'])[4]"))).click();
+	        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='text-gray-400 focus:outline-none'])[6]"))).click();
+
+	        // Click again to close the dropdown
+	        roomGuestDropdown.click();
+
+	        // Click the search button
+	        WebElement searchBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Search']")));
+	        searchBtn.click();
+
+
 			
 }
 	
 	
 	
 	 @AfterClass
-	     void tearDown() {
+	  void tearDown() {
 	        if (driver != null) {
 	            driver.quit(); // Ensure the browser closes after the test
 	            System.out.println("Driver quit successfully");
 	        }
 	    }
-	    
+//	    
 	 
 //---------
 	     
@@ -99,223 +99,208 @@ public class VerifyHotelDetailsPage {
 	 @Test(priority=1)
 	void verifySearchedHotelNameDateGuestNoAndRoomNo() throws InterruptedException
 	{  
-		//generally we if enter a hotel and then go to hotel page then the enter hotel name 
-	   //must be same as display name	
-	   Thread.sleep(2000);	
+		 Thread.sleep(2000); // Allow time for page to load
+
+		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		    // --- Retrieve hotel name from search section ---
+		    WebElement hotelElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("//input[@aria-autocomplete='list']")
+		    ));
+		    String searchedHotelName = hotelElement.getAttribute("value").trim(); // use getAttribute for input fields
+		    System.out.println("Searched Hotel Name: " + searchedHotelName);
+
+		    // --- Retrieve check-in and check-out dates ---
+		    String checkInDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("(//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')])[1]"))
+		    ).getText().trim();
+		    System.out.println("Check-in Date: " + checkInDate);
+
+		    String checkOutDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("(//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')])[2]"))
+		    ).getText().trim();
+		    System.out.println("Check-out Date: " + checkOutDate);
+
+		    // --- Retrieve guest and room info from search section ---
+		    String guestsAndRoom = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("//h5[contains(@class,'MuiTypography-root MuiTypography-h5 MuiTypography-noWrap mui-h3uw92')]"))
+		    ).getText().trim();
+		    System.out.println("Guest and Room Info (Search Section): " + guestsAndRoom);
+
+		    // --- Retrieve hotel name from details page ---
+		    WebElement hotelNameElementOnDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("//h2[@class='MuiTypography-root MuiTypography-h4 mui-gaxl7d']")
+		    ));
+		    String displayedHotelName = hotelNameElementOnDetail.getText().trim();
+		    System.out.println("Displayed Hotel Name (Details Page): " + displayedHotelName);
+
+		    // --- Retrieve guest, child, and room info from details page ---
+		    String guestCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[1]"))
+		    ).getText().trim();
+		    String childCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[2]"))
+		    ).getText().trim();
+		    String roomCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[4]"))
+		    ).getText().trim();
+
+		    System.out.println("Guests (Detail Page): " + guestCountDetail);
+		    System.out.println("Children (Detail Page): " + childCountDetail);
+		    System.out.println("Rooms (Detail Page): " + roomCountDetail);
+//
+//		    // --- Assertions ---
+		    Assert.assertEquals(displayedHotelName, searchedHotelName, "Hotel name does not match!");
+		    Assert.assertTrue(guestsAndRoom.contains(guestCountDetail), "Guest count does not match!");
+		    Assert.assertTrue(guestsAndRoom.contains(childCountDetail), "Child count does not match!");
+		    Assert.assertTrue(guestsAndRoom.contains(roomCountDetail), "Room count does not match!");
+
+		    System.out.println("All values match as expected.");
 	   
-	   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    
-	   // Retrieve hotel name from details page
-	    WebElement hotelElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("//h2[contains(@class,'MuiTypography-h4 mui-11jxq2l')]")
-	    ));
-	    String hotelName = hotelElement.getText().trim();
-	    
-	    // Retrieve check-in, check-out, guest, child, and room details
-	    String checkIn = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-9l3uo3')])[2]"))
-	    ).getText().trim();
-	    
-	    
-	    System.out.println(" the date of "+checkIn);
-	    
-	    String checkOut = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-9l3uo3')])[4]"))
-	    ).getText().trim();
-	    
-	    
-	    System.out.println(" the date of "+checkOut);
-	    
-	    
-	    String guests = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-9l3uo3')])[5]"))
-	    ).getText().trim();
-	    
-	    String children = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-9l3uo3')])[6]"))
-	    ).getText().trim();
-	    
-	    String rooms = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-9l3uo3')])[7]"))
-	    ).getText().trim();
-	    
-	    // Retrieve hotel name from search box
-	    String searchHotelName = driver.findElement(By.xpath("//input[@type='text']")).getAttribute("value").trim();
-	    
-	    // Retrieve calendar details
-	    WebElement calendarElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("//p[@class='py-2 text-gray-700 flex-grow']")
-	    ));
-	    String calendarText = calendarElement.getText().trim();
-	    
-	    String checkInDate = calendarText.substring(0, 11).trim();
-	    
-	    String checkOutDate = calendarText.substring(13, 23).trim();
-	    System.out.println("Check-in date: " + checkInDate + " | Check-out date: " + checkOutDate);
-	    
-	    // Retrieve guest details from UI
-	    WebElement guestDetailsElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 mui-1na211y']")
-	    ));
-	    String guestDetails = guestDetailsElement.getText().trim();
-	    
-	    String adults = guestDetails.substring(0, 1);
-	    String childrenCount = guestDetails.substring(10, 11);
-	    String roomCount = guestDetails.substring(19, 20);
-	    
-	    System.out.println("Guest details: " + guestDetails + " | Adults: " + adults + " | Children: " + childrenCount + " | Rooms: " + roomCount);
-	    
-	    // Assertions to verify details match
-	    Assert.assertTrue(searchHotelName.contains(hotelName), "Hotel name does not match");
-	    Assert.assertTrue(guests.contains(adults), "Guest count does not match");
-	    Assert.assertTrue(children.contains(childrenCount), "Children count does not match");
-	    Assert.assertTrue(rooms.contains(roomCount), "Room count does not match");
-	    Assert.assertTrue(checkIn.equals(checkInDate), "Check-in date does not match");
-	    Assert.assertTrue(checkOut.equals(checkOutDate), "Check-out date does not match");
-	   
-	    
-	    // Closing the driver
-	    Thread.sleep(2000);
-//	    driver.quit();
-	
 		
 	}
 	 
 	 
-//--------------verify sharing in Hotel Detail Page-----------------
-	 
-     @Test(priority=2)
-	void verifyShareFB() throws InterruptedException
-	{    
-    	 String fb="Facebook";
-    	 Thread.sleep(3000);
-    	 
-    	driver.findElement(By.id("composition-button")).click();
-    	
-    	driver.findElement(By.xpath("(//li[contains(@class,'MuiMenuItem-root MuiMenuItem-gutters mui-mlee68')])[1]")).click();
-    	String nm="";
-    	String pwh=driver.getWindowHandle();
-    	Set<String> allw=driver.getWindowHandles();
-    	 System.out.println("the window is "+driver.getWindowHandles());
-    	for(String id:allw)
-    	{  
-    		if(!id.equals(pwh))
-    		{
-    			driver.switchTo().window(id);
-    			Thread.sleep(1000);
-    			 nm=driver.getTitle();
-    			System.out.println("The title is "+nm);
-    
-    		}
-    		
-    	}
-    	
-    	
-     Assert.assertTrue(fb.equals(nm));
-    	Thread.sleep(500);
-    	
-    	
-    	  
-}
+//-------------Verify Sharing Button workornot Hotel Detail Page-----------------
 	 
 
-  //case 2 whatsapp
-     @Test(priority=3)
-     void verifyShareWhatsapp() throws InterruptedException
- 	{    
-     	 String wp="WhatsApp";
-     	 Thread.sleep(3000);
-     	 
-     	driver.findElement(By.id("composition-button")).click();
-     	
-     	driver.findElement(By.xpath("(//li[contains(@class,'MuiMenuItem-root MuiMenuItem-gutters mui-mlee68')])[2]")).click();
-     	String nm="";
-     	String pwh=driver.getWindowHandle();
-     	Set<String> allw=driver.getWindowHandles();
-     	 System.out.println("the window is "+driver.getWindowHandles());
-     	for(String id:allw)
-     	{  
-     		if(!id.equals(pwh))
-     		{
-     			driver.switchTo().window(id);
-     			Thread.sleep(1000);
-     			 nm=driver.getTitle();
-     			System.out.println("The title is "+nm);
-     			
-     			
-     			
-     			
-     		}
-     		
-     	}
-     	
-     	
-     	Assert.assertTrue(wp.equals(nm));
-     	Thread.sleep(500);
-     	
-     	
-     	  
- }
-     
-  //case 3 verifytwi
-     @Test(priority=4)
-     void verifySharetwitter() throws InterruptedException
- 	{    
-     	 String tw="Compose new post / X";
-     	 Thread.sleep(3000);
-     	 
-     	driver.findElement(By.id("composition-button")).click();
-     	
-     	driver.findElement(By.xpath("(//li[contains(@class,'MuiMenuItem-root MuiMenuItem-gutters mui-mlee68')])[3]")).click();
-     	String nm="";
-     	String pwh=driver.getWindowHandle();
-     	Set<String> allw=driver.getWindowHandles();
-     	 System.out.println("the window is "+driver.getWindowHandles());
-     	for(String id:allw)
-     	{  
-     		if(!id.equals(pwh))
-     		{
-     			driver.switchTo().window(id);
-     			Thread.sleep(1000);
-     			 nm=driver.getTitle();
-     			System.out.println("The title is "+nm);
-     			
-     			
-     			
-     			
-     		}
-     		
-     	}
-     	
-     	
-      Assert.assertTrue(tw.equals(nm));
-     	Thread.sleep(500);
-     
-     	  
- }
+	  @Test
+	  void shareButtonworkfb() throws InterruptedException
+	  {      
+		  String name="Facebook";
+		  // Wait for the page to load
+		    Thread.sleep(3000);
+	    
+		    // Click on the composition button
+		    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
+		    compositionButton.click();
+		    Thread.sleep(500);
+
+		    // Click on the first share button (Facebook)
+		    WebElement shareButton = driver.findElement(By.xpath("(//button[@class='react-share__ShareButton'])[1]"));
+		    shareButton.click();
+
+		    // Store the current window handle
+		    String parentWindow = driver.getWindowHandle();
+		    Set<String> allWindows = driver.getWindowHandles();
+
+		    System.out.println("Parent Window Handle: " + parentWindow);
+		    System.out.println("All Window Handles: " + allWindows);
+
+		    Thread.sleep(1000);
+		    String wegetas="";
+		    // Switch to the newly opened window
+		    for (String windowId : allWindows) {
+		        if (!windowId.equals(parentWindow)) {
+		            driver.switchTo().window(windowId);
+		           wegetas=   driver.getTitle();
+		            // Add any further steps inside the new window here
+		            break; // Exit loop after switching
+		        }
+		    }
+		    
+		    
+		    Assert.assertTrue(name.equals(wegetas));
+	  }
+
+	  
+	  
+	  
+	  
+	  @Test
+	  void shareButtonworkwhatsapp() throws InterruptedException
+	  {      
+		  String name="WhatsApp";
+		  // Wait for the page to load
+		    Thread.sleep(3000);
+	    
+		    // Click on the composition button
+		    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
+		    compositionButton.click();
+		    Thread.sleep(500);
+
+		    // Click on the first share button (Facebook)
+		    WebElement shareButton = driver.findElement(By.xpath("(//button[@class='react-share__ShareButton'])[2]"));
+		    shareButton.click();
+
+		    // Store the current window handle
+		    String parentWindow = driver.getWindowHandle();
+		    Set<String> allWindows = driver.getWindowHandles();
+
+		    System.out.println("Parent Window Handle: " + parentWindow);
+		    System.out.println("All Window Handles: " + allWindows);
+
+		    Thread.sleep(1000);
+		    String wegetas="";
+		    // Switch to the newly opened window
+		    for (String windowId : allWindows) {
+		        if (!windowId.equals(parentWindow)) {
+		            driver.switchTo().window(windowId);
+		           wegetas=   driver.getTitle();
+		           System.out.println("the ans"+wegetas);
+		            // Add any further steps inside the new window here
+		            break; // Exit loop after switching
+		        }
+		    }
+		    
+		    
+		    Assert.assertTrue(name.contains(wegetas));
+	  }
+	  
+	  
+	  @Test
+	  void shareButtonworktwitter() throws InterruptedException
+	  {      
+		  String name="Title: X";
+		  // Wait for the page to load
+		    Thread.sleep(3000);
+	    
+		    // Click on the composition button
+		    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
+		    compositionButton.click();
+		    Thread.sleep(500);
+
+		    // Click on the first share button (Facebook)
+		    WebElement shareButton = driver.findElement(By.xpath("(//button[@class='react-share__ShareButton'])[3]"));
+		    shareButton.click();
+
+		    // Store the current window handle
+		    String parentWindow = driver.getWindowHandle();
+		    Set<String> allWindows = driver.getWindowHandles();
+
+		    System.out.println("Parent Window Handle: " + parentWindow);
+		    System.out.println("All Window Handles: " + allWindows);
+
+		    Thread.sleep(1000);
+		    String wegetas1="";
+		    // Switch to the newly opened window
+		    for (String windowId : allWindows) {
+		        if (!windowId.equals(parentWindow)) {
+		            driver.switchTo().window(windowId);
+		            // Wait until the title is non-empty
+	                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	                wait.until(driver -> !driver.getTitle().isEmpty());
+
+	                // Now get the title
+	                 wegetas1 = driver.getTitle();
+	                System.out.println("New Window Title: " + wegetas1);
+
+	                // Add any more actions here after getting the title
+
+	                break; // Exit loop after switching
+		        
+		        }
+		    }
+		    
+		    
+		    Assert.assertTrue(name.contains(wegetas1));
+	  }
+	  
+	  
      
    
   //------------verify links--
-     @Test(priority=5)
- void verifyHotelOverviewTestLink() throws InterruptedException
- {  
-    	String name="About Hotel Shyam Krishna(Test_Hotel)"; 
-   Thread.sleep(2000);
-   
-   WebElement elem=driver.findElement(By.xpath("//button[text()='OverView']"));
-   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
-   
-   WebElement elem1=driver.findElement(By.xpath("//h4[@class='MuiTypography-root MuiTypography-h4 mui-2dqhof']"));
-   System.out.println("The name is "+elem1.getText());
-   
-   
-   Assert.assertTrue(name.equals(elem1.getText()));
-   
-   Thread.sleep(1000);
- 
-    
- }
-
+  
      
    @Test  (priority=6)
  void verifyDisplayFacilityofHotel() throws InterruptedException
@@ -326,11 +311,11 @@ public class VerifyHotelDetailsPage {
        
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
-       WebElement elem=driver.findElement(By.xpath("//button[text()='Facility']"));
+       WebElement elem=driver.findElement(By.xpath("//button[text()='Rooms']"));
        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
        elem.click();
        
-       WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom mui-t1nuxs']"));
+       WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom mui-15nrmjw']"));
        System.out.println("The name is "+elem1.getText());
        
        
@@ -364,7 +349,7 @@ public class VerifyHotelDetailsPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
         elem.click();
         
-        WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-pd8ovx']"));
+        WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-1hkh2ij']"));
         System.out.println("The name is "+elem1.getText());
         
         Assert.assertTrue(name.equals(elem1.getText()));
@@ -379,7 +364,7 @@ public class VerifyHotelDetailsPage {
      
    
    @Test(priority=8)
-   void verifyDisplayMAP() throws InterruptedException
+   void verifyAddressandMAPisdisplayornot() throws InterruptedException
    {  
          String name="Address";
         Thread.sleep(2000);
@@ -388,14 +373,34 @@ public class VerifyHotelDetailsPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
         elem.click();
         
-        WebElement elem1=driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 mui-vtr8r0']"));
+        Thread.sleep(2000);
+        
+        WebElement elem1=driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 mui-1urunfo']"));
         System.out.println("The name is "+elem1.getText());
-        
+        Thread.sleep(2000);
         Assert.assertTrue(name.equals(elem1.getText()));
+    
+     // Step 1: Switch to the iframe using the title attribute
+        WebElement iframeElement = driver.findElement(By.xpath("//iframe[@title='201301']"));
+        driver.switchTo().frame(iframeElement);
+        
+        
+     // Step 2: Wait for the element with aria-label="Map"
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement mapElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[@aria-label='Map']")
+        ));
+
+        // Step 3: Assert it is visible
+        Assert.assertTrue(mapElement.isDisplayed());
+        System.out.println("Map is displayed!!");
+
+        // Step 4: Switch back to default content---mean back to original one
+        driver.switchTo().defaultContent();
         
         
         
-        Thread.sleep(1000);
+        
       
       
    }
@@ -411,7 +416,7 @@ public class VerifyHotelDetailsPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
         elem.click();
         
-        WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-y8jflg']"));
+        WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-18pdkuj']"));
         System.out.println("The name is "+elem1.getText());
         
         Assert.assertTrue(name.equals(elem1.getText()));
@@ -436,7 +441,7 @@ public class VerifyHotelDetailsPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
         elem.click();
         
-        WebElement elem1=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-cjetgs']"));
+        WebElement elem1=driver.findElement(By.xpath("//h4[@class='MuiTypography-root MuiTypography-h4 mui-4rpz18']"));
         System.out.println("The name is "+elem1.getText());
         
         Assert.assertTrue(name.equals(elem1.getText()));
@@ -453,66 +458,75 @@ public class VerifyHotelDetailsPage {
    
   //------------------Payment verify--------
    
-   void EnteringNoandOTP() throws InterruptedException
-	{   Thread.sleep(1000);
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	void enterLoginCredential() throws InterruptedException
+	{  
 		
 		
+		//click on first
+		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).click();
+		
+		Thread.sleep(1000);
 		//sending number
-		driver.findElement(By.xpath("//input[@type=\"number\"]")).sendKeys("9988776655");
+		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys("9988776655");
 		
 		//click
-		driver.findElement(By.xpath("//button[@type=\"button\"]")).click();
+		driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
 		
 		Thread.sleep(500);
 		
 		//sending otp
 		
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("1");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("2");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("3");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("4");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("5");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("6");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("5");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("4");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("7");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("6");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("9");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("8");
 		
 //		Thread.sleep(300);
 		
 		//click
 		driver.findElement(By.xpath("//button[text()=\"Verify OTP\"]")).click();
 		
-   
-   
+//		Thread.sleep(300);
+//		
+//		Thread.sleep(500);
+		
+	
+	
+
+		   
 	}
+   @Test
    
-   @Test(priority=11)
-   
-  void verifyPaymentButtonAfterLogin() throws InterruptedException
+  void verifyBookNowButtonwork() throws InterruptedException
   {  
 	   Thread.sleep(1000);
 	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	   
 	 
-	   WebElement elem=driver.findElement(By.xpath("(//button[text()='Book Now'])[2]"));
+	   WebElement elem=driver.findElement(By.xpath("(//button[text()='Book Now'])[1]"));
        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView;", elem);
        elem.click();
        
        
-       EnteringNoandOTP();  //function calling
+       enterLoginCredential();  //function calling
        
-      
- 
-  
-      //-------------------
+      System.out.println("the login case done");
       
       
+   Thread.sleep(1000);
+//  
+//      //-------------------
+//      
+//      
       try {
           WebElement elem1 = driver.findElement(By.xpath("//button[text()='Pay Now']"));
           ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", elem1);
 
           // Click the button and check if it was clicked successfully
           elem1.click();
-          System.out.println("Clickable");
+          System.out.println("Pay Now Button Clickable,mean BookNow Buttonwork");
 
       } catch (Exception e) {
           System.out.println("Element not clickable: " + e.getMessage());
@@ -591,41 +605,35 @@ public class VerifyHotelDetailsPage {
    
    
    @Test(priority=13)
-   void roomclickpricechange() throws InterruptedException
-   {  
+   void roomClickpricechange() throws InterruptedException
+   {    
+	   String name="Selected";
 	   Thread.sleep(1000);
 	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	   
 	  
-	   WebElement elem = driver.findElement(By.xpath("//h6[@class='MuiTypography-root MuiTypography-h6 mui-5r7gob']"));
-
-	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
-
+	   WebElement elem = driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-1hkh2ij']"));
+	   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
 	   
-	  Thread.sleep(1000);
-	  WebElement elem2=driver.findElement(By.xpath("(//button [contains(@class,'MuiButton-colorPrimary MuiButton-disableElevation mui-154hm4')])[3]"));
+	  Thread.sleep(3000);
+	  WebElement elem2=driver.findElement(By.xpath("(//button[@type='button'][normalize-space()='Select Room'])[1]"));
 	  elem2.click();
 	  
 	  
 	  
 
-	  WebElement dis=driver.findElement(By.xpath("(//h6[@class='MuiTypography-root MuiTypography-h6 mui-goiy6x'])[4]"));
-	  System.out.println(" the price is "+dis.getText());
-	  String disp=dis.getText();
+//	  WebElement elem3=driver.findElement(By.xpath("//button[@type='button'][29]"));
+	
+	  
+	  String disp=elem2.getText();
             //	button [contains(@class,'MuiButton-colorPrimary MuiButton-disableElevation mui-154hm4')]
-	  WebElement displapri=driver.findElement(By.xpath("//h2[@class='MuiTypography-root MuiTypography-h2 mui-1ojxjbw']"));
-	  
-	  System.out.println("The price is "+displapri.getText());
-	  String displ=displapri.getText();
-	  
-	  Assert.assertTrue(disp.contains(displ));
-	  
-	  
-	  
-	 
-	  
-	  
-	 
+	
+	  System.out.println("The Button change is "+disp);
+//	  String displ=displapri.getText();
+//	  
+	  Assert.assertTrue(name.contains(disp));
+//	  
+	
 	  
 	   
    }
@@ -640,21 +648,22 @@ public class VerifyHotelDetailsPage {
 	   String name="View Less";
 	   Thread.sleep(1000);
 	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
-       WebElement elem=driver.findElement(By.xpath("//button[text()='Facility']"));
-       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
+	   Thread.sleep(3000);
+	   WebElement viewpart = driver.findElement(By.xpath("//button[normalize-space()='All Reviews']"));
+
+       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", viewpart);
       
-       Thread.sleep(5000);
-	   
-       WebElement elem2=driver.findElement(By.xpath("(//button[contains(@class,'MuiButton-colorPrimary MuiButton-disableElevation mui-12c3y5e')])[1]"));
-       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem2);
-       elem2.click();
+	   Thread.sleep(3000);
+       WebElement button = driver.findElement(By.xpath("(//button[contains(@class, 'MuiButton-containedPrimary') and contains(@class, 'mui-1rnjsvl')])[1]"));
+
+       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
+       button.click();
        
-       WebElement elem3=driver.findElement(By.xpath("(//button[contains(@class,'MuiButton-colorPrimary MuiButton-disableElevation mui-12c3y5e')])[1]"));
-       System.out.println("The name is "+elem3.getText());
+       WebElement buttonchange = driver.findElement(By.xpath("(//button[contains(@class, 'MuiButton-containedPrimary') and contains(@class, 'mui-1rnjsvl')])[1]"));
+       System.out.println("The name is "+buttonchange.getText());
     
        
-       Assert.assertTrue(name.equals(elem3.getText()));
+       Assert.assertTrue(name.equals(buttonchange.getText()));
 	   
        
 	   
@@ -668,36 +677,22 @@ public class VerifyHotelDetailsPage {
   @Test(priority=15)
  void verifyImgaedisplayornot() throws InterruptedException
  {  
-	  String shouldbe="ALL MEDIA";
+	  String shouldbe="All Media (7)";
 	  Thread.sleep(1000);
 	 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	 
-	 WebElement img=driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium mui-1ogqmc6']"));
+	 WebElement img=driver.findElement(By.xpath("//p[@class='text-white text-sm font-medium text-center px-3 py-1 rounded-md']"));
 	 img.click();
 	 
 	 Thread.sleep(1000);
 
- WebElement allmedia=driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected mui-11is3c3']"));
+ WebElement allmedia=driver.findElement(By.xpath("(//button[normalize-space()='All Media (7)'])[1]"));
 	System.out.println("The text is "+allmedia.getText());
-	
-	String op=allmedia.getText().substring(0,9);
-	 
-	System.out.println("The text string "+ op);
-	
-	String no1=allmedia.getText().substring(11,13);
-	
-	int no=Integer.parseInt(no1);
-;	System.out.println("The text number "+ no);
-	
-	List<WebElement> imgclass=driver.findElements(By.xpath("//button[@class='image-gallery-thumbnail']"));
-	System.out.println(" the size is "+imgclass.size());
-    int disp=imgclass.size()+4;
-    
-    Assert.assertEquals(no, disp);
- 
-	Assert.assertTrue(shouldbe.equals(op));
 
-	 
+// 
+	Assert.assertTrue(shouldbe.equals(allmedia.getText()));
+
+	 System.out.println("The View Image Button is working properly");
 	 
  }
   
@@ -707,26 +702,26 @@ public class VerifyHotelDetailsPage {
  //*****************************BidNow Option Verification********************************
   
   @Test
-  void verifyBidNowOption() throws InterruptedException
+  void verifyBidNowOptionAfterLogin() throws InterruptedException
   {   
 	  
-	  String n2m="Price Breakup";
+	  String n2m="Make Your Bid Here!";
 	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	  Thread.sleep(2000);
 	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
+	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[1]"));
 	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
       bidButtonClick.click();
 	  
 	  Thread.sleep(2000);
 	  
 	  //function calling
-	  EnteringNoandOTP();
+	  enterLoginCredential();
 	  
 	  Thread.sleep(2000);
 	  
 	  
-	  WebElement bidButtonClick1 = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
+	  WebElement bidButtonClick1 = driver.findElement(By.xpath("(//button[text()='Bid Now'])[1]"));
 	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
       bidButtonClick1.click();
       
@@ -736,342 +731,400 @@ public class VerifyHotelDetailsPage {
 	  
       //--------------
       
-     WebElement elem =driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-inputSizeSmall mui-1o6z5ng')]"));
-     elem.click();
+     WebElement elem =driver.findElement(By.xpath("//p[contains(@class,'MuiTypography-root MuiTypography-body1 mui-i5b67l')]"));
+    String name= elem.getText();
      Thread.sleep(2000);
      
-    //----------Understanding how to delete the existing keyword and enter new key
-     
-     //--the below is like a command it do generally ctrl+A then delete using backsapce
-     Actions action=new Actions(driver);
-     action.keyDown(Keys.CONTROL).sendKeys("a")
-     .keyUp(Keys.CONTROL)
-     .sendKeys(Keys.BACK_SPACE)
-     .build().perform();
-     
-     
-     
-//     elem.clear(); 
-     Thread.sleep(2000);
-  
-     elem.sendKeys("4");
-     elem.sendKeys("4");
-     elem.sendKeys("0");
-     elem.sendKeys("8");
-     
+   
+     Assert.assertTrue(n2m.equals(name));
 
-     Thread.sleep(2000);
      
-     driver.findElement(By.xpath("//button[text()='Place Bid']")).click();
-     
+     System.out.println("Bid Now Button Work Properly");
      
      
-     // after place bid there are 
-     
-     Thread.sleep(2000);
-     
-   WebElement elm=  driver.findElement(By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1xvinid'])[2]"));
-     
-     System.out.println("The text is "+elm.getText());
-     
-     Thread.sleep(1000);
-     
-     Assert.assertTrue(n2m.equals(elm.getText()));
-     
-   WebElement elm2=  driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium mui-1ogqmc6'])[2]"));
-     elm2.click();
-     
-     Thread.sleep(2000);
-     
-     
-     
-    
-     
-     
-	  
   }
   
+  //************* Recommended Hotel*********************
   
-  //*************** verifyclickofhigherlesslower*****************************
+
+	@Test
+	void VerifyRecommendHotelStartBidBeforeLogin() throws InterruptedException
+	{  
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 
+		
+		 Thread.sleep(1000);
+		 
+		 
+		WebElement elem1 =driver.findElement(By.xpath("//h4[normalize-space()='Recommended Hotels']"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
+
+     
+      Thread.sleep(1000);
+      
+      driver.findElement(By.xpath("(//h6[text()='Start Bid @ '])[1]")).click();
+      
+      Thread.sleep(1000);
+
+		  String val=driver.getTitle();
+	     System.out.println("The title is"+val);
+	     
+//	     Assert.assertTrue(value.equals(val));
+//		  
+		
+	}
+	
+	@Test
+	void VerifyRecommendHotelBidNowBeforeLogin() throws InterruptedException
+	{  
+		
+		
+		String value="Auth screen : Bidinn - Bidinn";
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 Thread.sleep(1000);
+		 WebElement elem1 =driver.findElement(By.xpath("//h4[normalize-space()='Recommended Hotels']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
+
+	     
+	      Thread.sleep(1000);
+   
+      
+      
+      driver.findElement(By.xpath("(//a[text()='Bid Now'])[1]")).click();
+      
+      
+          Thread.sleep(3000);
+		  String val=driver.getTitle();
+	     System.out.println("The title is"+val);
+	     
+	  Assert.assertTrue(val.equals(value));
+		
+	}
+	
+	
+	
+	//-------See More Review Work or not---------------
+	
+	@Test
+	void SeeMoreReviewworkornot() throws InterruptedException
+	{    
+		String ans="All Reviews";
+       Thread.sleep(2000);
+       ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2500);");
+
+      
+        Thread.sleep(1000);
+        
+        WebElement allrev=driver.findElement(By.xpath("//button[normalize-space()='See More Reviews']"));
+        allrev.click();
+       
+        
+        Thread.sleep(1000);
+		
+        
+        WebElement answeget=driver.findElement(By.xpath("(//h2[normalize-space()='All Reviews'])[1]"));
+        System.out.println("the ans we get "+answeget.getText());
+        Thread.sleep(1000);
+        
+        Assert.assertTrue(ans.equals(answeget.getText()));
+        
+        
+        
+        WebElement cls=driver.findElement(By.xpath("(//button[text()='Close'])[3]"));
+        cls.click();
+        Thread.sleep(1000);
+       
+        System.out.println("The close button is working");
+        	
+		
+	}
   
   
   @Test
-  void verifyClickofAlreadyGivenBidbuttonLowerchance() throws InterruptedException
-  {  
-	  String n2m="Price Breakup";
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
-      bidButtonClick.click();
-	  
-	  Thread.sleep(2000);
-	  
-	  //function calling
-	  EnteringNoandOTP();
-	  
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick1= driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
-      bidButtonClick1.click();
-	  
-      Thread.sleep(2000);
-	  
-	  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-colorWarning MuiButton-disableElevation mui-147grm3')] ")).click();
+	void AllReviewworkornotinOverviewSection() throws InterruptedException
+	{    
+		String ans="All Reviews";
+       Thread.sleep(2000);
+       ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);");
+
+      
+        Thread.sleep(1000);
+        
+        WebElement allrev=driver.findElement(By.xpath("//button[normalize-space()='All Reviews']"));
+        allrev.click();
+       
+        
+        Thread.sleep(1000);
+		
+        
+        WebElement answeget=driver.findElement(By.xpath("(//h2[normalize-space()='All Reviews'])[1]"));
+        System.out.println("the ans we get "+answeget.getText());
+        Thread.sleep(1000);
+        
+        Assert.assertTrue(ans.equals(answeget.getText()));
+        
+        
+        
+        WebElement cls=driver.findElement(By.xpath("(//button[text()='Close'])[3]"));
+        cls.click();
+        Thread.sleep(1000);
+       
+        System.out.println("The close button is working");
+        	
+		
+	}
+  
+  
+  //**********More Option**************
+  
+  @Test
+  void MoreOptionornot() throws InterruptedException
+	{    
+		String teststring="Room With Free Cancellation";
+     Thread.sleep(2000);
+     
+      WebElement moreoption=driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 underline-offset-3 underline text-end w-full mui-to2i5k']"));
+      moreoption.click();
+     
+      
+      Thread.sleep(1000);
+		
+      
+      WebElement answeget=driver.findElement(By.xpath("//h6[normalize-space()='Room With Free Cancellation | Breakfast only']"));
+    String ansget=answeget.getText();
+      Thread.sleep(1000);
+   
+     Assert.assertTrue(ansget.contains(teststring));
+      System.out.println("More Option Link is Working and when click direct to Room Types");
+      	
+		
+	}
+  
+  
+  //-------***Footer********
+  
+  @Test
+  void foooteriscorrectlydisplaydataornotguestroomchildtotalnight() throws InterruptedException
+  { 
+	  Thread.sleep(2000); // Allow time for page to load
+
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+      // --- Detail Page Data ---
+      String checkInDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')])[1]"))
+      ).getText();
+
+      String checkOutDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')])[2]"))
+      ).getText();
+
+      String guestCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[1]"))
+      ).getText().substring(0,1);
+
+      String childCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[2]"))
+      ).getText().substring(0,1);
+
+      String totalNightCount = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[3]"))
+      ).getText().substring(0,1);
+
+      String roomCountDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[4]"))
+      ).getText().substring(0,1);
+
+      // --- Print detail page values ---
+      System.out.println("DETAIL PAGE DATA:");
+      System.out.println("Check-in Date: " + checkInDate);
+      System.out.println("Check-out Date: " + checkOutDate);
+      System.out.println("Guests: " + guestCountDetail);
+      System.out.println("Children: " + childCountDetail);
+      System.out.println("Rooms: " + roomCountDetail);
+      System.out.println("Total Nights: " + totalNightCount);
+
+      // --- Footer Data ---
+      WebElement elem = driver.findElement(By.xpath("//button[text()='Rooms']"));
+      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
+      elem.click();
+      Thread.sleep(1000);
+
+      String guestCountFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-1pbdpw4'])[1]"))
+      ).getText().trim();
+
+      String childCountFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-1pbdpw4'])[2]"))
+      ).getText().trim();
+
+      String roomCountFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-1pbdpw4'])[3]"))
+      ).getText().trim();
+
+      String checkInFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-12hfmzg'])[2]"))
+      ).getText().substring(5,6);
+
+      String checkOutFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-12hfmzg'])[3]"))
+      ).getText().substring(6,7);
+
+      String totalNightFooter = wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 mui-em7kzi']"))
+      ).getText().trim();
 
       Thread.sleep(2000);
-      
-      WebElement elm=  driver.findElement(By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1xvinid'])[2]"));
-      
-      System.out.println("The text is "+elm.getText());
-	  
-	  //button[contains(@class,'MuiButton-colorWarning MuiButton-disableElevation mui-147grm3')]
-	  
-      Assert.assertTrue(n2m.equals(elm.getText()));
-	  
-	  
+
+      // --- Print footer values ---
+      System.out.println("\nFOOTER PAGE DATA:");
+      System.out.println("Check-in Date: " + checkInFooter);
+      System.out.println("Check-out Date: " + checkOutFooter);
+      System.out.println("Guests: " + guestCountFooter);
+      System.out.println("Children: " + childCountFooter);
+      System.out.println("Rooms: " + roomCountFooter);
+      System.out.println("Total Nights: " + totalNightFooter);
+
+      // --- Assertion using contains and AND logic ---
+      boolean allMatch =
+          guestCountFooter.contains(guestCountDetail) &&
+          childCountFooter.contains(childCountDetail) &&
+          roomCountFooter.contains(roomCountDetail) &&
+          checkInDate.contains(checkInFooter) &&
+          checkOutDate.contains(checkOutFooter) &&
+          totalNightFooter.contains(totalNightCount);
+
+      Assert.assertTrue(allMatch);
+
+      System.out.println(" All values match as expected.");
   }
   
+  
+  //********Price Segment Matching Original,Display and discount*******
   
   
   @Test
-  void verifyClickofAlreadyGivenBidbuttonHigherchance() throws InterruptedException
-  {  
-	  String n2m="Price Breakup";
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
-      bidButtonClick.click();
-	  
-	  Thread.sleep(2000);
-	  
-	  //function calling
-	  EnteringNoandOTP();
-	  
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick1= driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
-      bidButtonClick1.click();
-	  
-      Thread.sleep(2000);
-	  
-	  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation animate-bounce mui-1m8qqgs')] ")).click();
-
-	  
-      Thread.sleep(2000);
-      
-      WebElement elm=  driver.findElement(By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1xvinid'])[2]"));
-      
-      System.out.println("The text is "+elm.getText());
-	  
-	  //button[contains(@class,'MuiButton-colorWarning MuiButton-disableElevation mui-147grm3')]
-	  
-      Assert.assertTrue(n2m.equals(elm.getText()));
-	  
-	  
-  }
-  
-  
-  @Test
-  void verifyClickofAlreadyGivenBidbuttonLesschance() throws InterruptedException
-  {  
-	  String n2m="Price Breakup";
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
-      bidButtonClick.click();
-	  
-	  Thread.sleep(2000);
-	  
-	  //function calling
-	  EnteringNoandOTP();
-	  
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick1= driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
-      bidButtonClick1.click();
-	  
-      Thread.sleep(2000);
-	  
-	  driver.findElement(By.xpath("//button[contains(@class,' MuiButton-colorError MuiButton-disableElevation mui-c6gl0h')] ")).click();
-
-	 
-      Thread.sleep(2000);
-      
-      WebElement elm=  driver.findElement(By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1xvinid'])[2]"));
-      
-      System.out.println("The text is "+elm.getText());
-	  
-	  //button[contains(@class,'MuiButton-colorWarning MuiButton-disableElevation mui-147grm3')]
-	  
-      Assert.assertTrue(n2m.equals(elm.getText()));
-	  
-	  
-  }
-  
-  
-  //**********************************add and sub button click *******************************
-  
-  //04-APRIL-25
-  //-------------verify subtract link------------------
-  
-  @SuppressWarnings("deprecation")
-@Test
-  void verifySubtractclick() throws InterruptedException
+  void checkingpriceiscorrectornot() throws InterruptedException
   {
 	  
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  Thread.sleep(2000);
 	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
-      bidButtonClick.click();
-	  
-	  Thread.sleep(2000);
-	  
-	  //function calling
-	  EnteringNoandOTP();
-	  
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick1= driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
-      bidButtonClick1.click();
-	  
-      Thread.sleep(2000);
-      
-      
-      WebElement elem =driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-inputSizeSmall mui-1o6z5ng')]"));
-//      elem.();
-      Thread.sleep(2000);
-//      System.out.println("The price is "+elem.getAttribute("value"));
-      
-      String inval=elem.getAttribute("value");
-      int invalm=Integer.parseInt(inval);
-      
-      System.out.println("The price is "+invalm);
-      
-      
-      //subtract --pe click
-      Thread.sleep(3000);
-      
-     WebElement elm2= driver.findElement(By.xpath("(//button[contains(@style, 'border: 1px solid rgb(96, 34, 131)')])[1]"));
-      elm2.click();
-      
-      Thread.sleep(3000);
-   
-      //-----------after clicking subtract---let get the input text again
-      
-      
-      
-      WebElement elem3 =driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-inputSizeSmall mui-1o6z5ng')]"));
+	  Thread.sleep(1000);
 
-    Thread.sleep(2000);
-//    System.out.println("The price is "+elem.getAttribute("value"));
+	// --- Original Price ---
+	WebElement originalPriceElement = driver.findElement(By.xpath("//h6[@class='MuiTypography-root MuiTypography-h6 line-through mui-m6y0y0']"));
+	String originalPriceText = originalPriceElement.getText().replaceAll("[^\\d]", ""); // Remove ₹, comma
+	int originalPrice = Integer.parseInt(originalPriceText);
+	System.out.println("Original Price (int): " + originalPrice);
+
+	// --- Discounted Price ---
+	WebElement discountedPriceElement = driver.findElement(By.xpath("//h3[@class='MuiTypography-root MuiTypography-h3 mui-12yubrm']"));
+	String discountedPriceText = discountedPriceElement.getText().replaceAll("[^\\d]", "");
+	int discountedPrice = Integer.parseInt(discountedPriceText);
+	System.out.println("Discounted Price (int): " + discountedPrice);
     
-    String suval=elem3.getAttribute("value");
-    int suvalm=Integer.parseInt(suval);
-    
-    
-    System.out.println("The price is "+suvalm);
+	Thread.sleep(1000);	// --- Discount Percentage ---
+	WebElement discountPercentElement = driver.findElement(By.xpath("//h6[@class=\"MuiTypography-root MuiTypography-subtitle1 font-normal text-[18px] mui-150bnhz\"]"));
+	String discountPercentText = discountPercentElement.getText().substring(0,5); // e.g., "25% OFF" → "25"
+	double discountPercent = Double.parseDouble(discountPercentText);
+
+	System.out.println("Discount Percentage (double): " + discountPercent);
+
+	Thread.sleep(1000);
+
+	// --- Calculate Expected Discounted Price ---
+	int expectedDiscountedPrice = (int) (originalPrice - (originalPrice * discountPercent / 100));
+	System.out.println("Expected Discounted Price: " + expectedDiscountedPrice);
+	
+	
+	// --- Assertion ---
+	Assert.assertEquals(expectedDiscountedPrice, discountedPrice);
+	System.out.println(" Discount calculation is correct.");  
+	
+	
+	//calculation 12%
+	
+	WebElement elm=driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-czvi0f']"));
+	System.out.println(elm.getText());
+	
+	String disp=elm.getText().substring(11);
+	int disc12Price = Integer.parseInt(disp);
+	System.out.println(disc12Price);
+	
+	int outp=(int)((discountedPrice*12)/100);
    
-      if(suvalm<invalm)
-      {
-    	  System.out.println("The subtractor is working ");
-      }
-      else
-      {
-    	  System.out.println("The click of subtractor is not correct");
-      }
-	  
-	  
-	  
-	  
+	Assert.assertTrue(outp==disc12Price);
+	System.out.println("the 12% of display price is correct");
+	
   }
+
   
   
   
-  //------------verify Addition-------------------------------
+  //***********Price checking at footer*********
+  
   
   @Test
-  void verifyAdditionclick() throws InterruptedException
-  {
-	  
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick = driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick);
-      bidButtonClick.click();
-	  
-	  Thread.sleep(2000);
-	  
-	  //function calling
-	  EnteringNoandOTP();
-	  
-	  Thread.sleep(2000);
-	  
-	  WebElement bidButtonClick1= driver.findElement(By.xpath("(//button[text()='Bid Now'])[2]"));
-	  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bidButtonClick1);
-      bidButtonClick1.click();
-	  
-      Thread.sleep(2000);
-      
-      
-      WebElement elem =driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-inputSizeSmall mui-1o6z5ng')]"));
-//      elem.();
-      Thread.sleep(2000);
-//      System.out.println("The price is "+elem.getAttribute("value"));
-      
-      String inval=elem.getAttribute("value");
-      int invalm=Integer.parseInt(inval);
-      
-      System.out.println("The price is "+invalm);
-      
-      
-      //subtract --pe click
-      Thread.sleep(3000);
-      
-     WebElement elm2= driver.findElement(By.xpath("(//button[contains(@style, 'border: 1px solid rgb(96, 34, 131)')])[2]"));
-      elm2.click();
-      
-      Thread.sleep(3000);
-   
-      //-----------after clicking subtract---let get the input text again
-  
-      WebElement elem3 =driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-inputSizeSmall mui-1o6z5ng')]"));
+  void foooteriscorrectlydisplaydataornotPricestage() throws InterruptedException
+  { 
+	  Thread.sleep(2000); // Allow time for page to load
 
-    Thread.sleep(2000);
-//    System.out.println("The price is "+elem.getAttribute("value"));
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    // --- Price on Detail Page ---
+
+	    // Original Price
+	    WebElement originalPriceElement = driver.findElement(By.xpath("//h6[@class='MuiTypography-root MuiTypography-h6 line-through mui-m6y0y0']"));
+	    String originalPriceText = originalPriceElement.getText().replaceAll("[^\\d]", "");
+	    int originalPrice = Integer.parseInt(originalPriceText);
+	    System.out.println("Detail Page - Original Price: " + originalPrice);
+
+	    // Discounted Price
+	    WebElement discountedPriceElement = driver.findElement(By.xpath("//h3[@class='MuiTypography-root MuiTypography-h3 mui-12yubrm']"));
+	    String discountedPriceText = discountedPriceElement.getText().replaceAll("[^\\d]", "");
+	    int discountedPrice = Integer.parseInt(discountedPriceText);
+	    System.out.println("Detail Page - Discounted Price: " + discountedPrice);
+
+	    // --- Scroll to Footer ---
+	    WebElement elem = driver.findElement(By.xpath("//button[text()='Rooms']"));
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
+	    elem.click();
+	    Thread.sleep(1000);
+
+	    // Footer - Discounted Price
+	    WebElement footerDiscountedPriceElement = driver.findElement(By.xpath("//h2[@class='MuiTypography-root MuiTypography-h2 mui-1ywbpq']"));
+	    String footerDiscountedText = footerDiscountedPriceElement.getText().replaceAll("[^\\d]", "");
+	    int footerDiscountedPrice = Integer.parseInt(footerDiscountedText);
+	    System.out.println("Footer - Discounted Price: " + footerDiscountedPrice);
+
+	    // Footer - Original Price
+	    WebElement footerOriginalPriceElement = driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 mui-jcrdv5']"));
+	    String footerOriginalText = footerOriginalPriceElement.getText().replaceAll("[^\\d]", "");
+	    int footerOriginalPrice = Integer.parseInt(footerOriginalText);
+	    System.out.println("Footer - Original Price: " + footerOriginalPrice);
+
+	 // --- Assertions to Compare Prices ---
+	    Assert.assertEquals(originalPrice, footerOriginalPrice, "Original price does not match between detail page and footer.");
+	    Assert.assertEquals(discountedPrice, footerDiscountedPrice, "Discounted price does not match between detail page and footer.");
+	    
+	    
+	    Thread.sleep(1000);
     
-    String adval=elem3.getAttribute("value");
-    int advalm=Integer.parseInt(adval);
-    
-    
-    System.out.println("The price after addition is "+advalm);
-   
-      if(advalm>invalm)
-      {
-    	  System.out.println("The addition is working ");
-      }
-      else
-      {
-    	  System.out.println("The click of Addition  is not correct");
-      }
-	  
-	  
-	  
-	  
   }
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
   
    
 }
