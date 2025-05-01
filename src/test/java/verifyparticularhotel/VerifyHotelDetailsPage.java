@@ -1,15 +1,15 @@
 package verifyparticularhotel;
 
-import static org.testng.Assert.assertEquals;
-
 import java.time.Duration;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -47,8 +47,8 @@ void enterHotelname() throws InterruptedException
 	        checkIn.click();
 	        
 	        //click on the next month calender
-	        WebElement nextmonthclick=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='rdrNextPrevButton rdrNextButton']")));
-	        nextmonthclick.click();
+//	        WebElement nextmonthclick=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='rdrNextPrevButton rdrNextButton']")));
+//	        nextmonthclick.click();
 	        
 	        
 
@@ -63,7 +63,7 @@ void enterHotelname() throws InterruptedException
 	        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
 	        guestIcon.click();
 
-	        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+	        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
 	        roomGuestDropdown.click();
 
 	        // Increment buttons (room, adult, child)
@@ -1113,9 +1113,150 @@ void enterHotelname() throws InterruptedException
   
   
   
+  //*****01-may-25******---BidNow Button each work---
+  
+  
+//  void functomakestringofcheckinoutsame(String )
+//  {
+//	  checkInDate
+//	  checkOutDate
+//  }
   
   
   
+  
+  
+  @Test
+  void checkBidCounteroptionworkornot() {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    try {
+	        // --- Retrieve hotel name from search section ---
+	        WebElement hotelElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("//input[@aria-autocomplete='list']")
+	        ));
+	        String searchedHotelName = hotelElement.getAttribute("value").trim();
+	        System.out.println("Searched Hotel Name: " + searchedHotelName);
+             
+	        Thread.sleep(1000);	        // --- Retrieve check-in and check-out dates ---
+	        String checkInDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("(//button[contains(@class,'MuiButton-disableElevation')])[1]"))
+	        ).getText().trim();
+	        
+	      
+	        System.out.println("Check-in Date: " + checkInDate);
+
+	        String checkOutDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("(//button[contains(@class,'MuiButton-disableElevation')])[2]"))
+	        ).getText().trim();
+	       
+	        System.out.println("Check-out Date: " + checkOutDate);
+	        
+
+	        // --- Click Bid Now ---
+	        verifyBidNowOptionAfterLogin(); // Likely causes page refresh or DOM update
+
+	        // --- Retrieve room type and address (after bid page loads) ---
+	        WebElement roomType = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("(//h4[contains(@class,'MuiTypography-h4')])[6]")));
+	        System.out.println("Room type: " + roomType.getText());
+
+	        WebElement hotelAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("//p[contains(@class,'MuiTypography-body1 mui-to2i5k')]")));
+	      
+	        
+	        String hoteladd=hotelAddress.getText();
+	        
+	        String hotelfinal=hoteladd.split(",")[1].trim();
+	        System.out.println("Hotel address: " + hotelfinal);
+	        
+	        
+	        System.out.println("The Bid page is open");
+
+	        // --- Get display price ---
+	        WebElement priceElem = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-fyswvn')])[1]")));
+	        int dispPrice = Integer.parseInt(priceElem.getText().substring(1));
+	        System.out.println("Original price: " + dispPrice);
+
+	        // --- Hotel details on bid page ---
+	        WebElement hotelNameBid = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-1h37nj2')])[1]")));
+	        WebElement checkInOutBid = driver.findElement(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-1h37nj2')])[2]"));
+	        WebElement roomTypeBid = driver.findElement(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-1h37nj2')])[3]"));
+
+	        System.out.println("Bid Page Details -> Name: " + hotelNameBid.getText()
+	            + ", Dates: " + checkInOutBid.getText()
+	            + ", Room Type: " + roomTypeBid.getText());
+
+	        // --- Move the slider ---
+	        WebElement minSlider = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath("//span[@class='MuiSlider-valueLabelCircle']")));
+	        System.out.println("Slider initial position: " + minSlider.getLocation());
+
+	        Actions act = new Actions(driver);
+	        act.dragAndDropBy(minSlider, -200, 0).perform();
+
+	        // Wait briefly for price update
+	        Thread.sleep(1500); // One of the few safe uses of sleep to allow for animation completion
+
+	        // --- Retrieve updated price and discount ---
+	        WebElement updatedPriceElem = driver.findElement(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-fyswvn')])[2]"));
+	        int updatedPrice = Integer.parseInt(updatedPriceElem.getText().substring(1));
+	        System.out.println("Price after sliding: " + updatedPrice);
+
+	        WebElement discountElem = driver.findElement(
+	            By.xpath("(//p[contains(@class,'MuiTypography-body1 mui-fyswvn')])[3]"));
+	        double discount = Double.parseDouble(discountElem.getText().substring(0,5));
+	        System.out.println("Discount applied: " + discount + "%");
+	        
+	        
+	        
+	        //compute the price---
+	        
+
+	     // Compute the discounted price
+	     int discountedPrice =(int) (dispPrice - (dispPrice * discount / 100));
+	     System.out.println("Calculated discounted price: " + discountedPrice);
+	        
+	        
+	        
+	      
+	     
+	     //checking the hotel name ,address same display or not
+	     
+	     
+	     Assert.assertTrue(hotelNameBid.getText().contains(searchedHotelName) && hotelNameBid.getText().contains(hotelfinal) && roomType.getText().contains( roomTypeBid.getText()));
+
+	        
+	        System.out.println("Hotel name and address are correct!! also Room type is same");
+	        
+	        if(discountedPrice==updatedPrice)
+	        	System.out.println("The discountedPrice is same as UpdatedPrice");
+	        
+	        
+	//---------------------Place Bid Button case-------------------------
+	        
+	        
+	        driver.findElement(By.xpath("(//button[text()='Place Bid'])[1]")).click();
+	        
+	        WebElement elm=driver.findElement(By.xpath("//h5[normalize-space()='Offer Sent']"));
+	        if(elm.isDisplayed())
+	        System.out.println("The Place Bid Button is working");
+	        
+	        
+	        
+
+	    } catch (StaleElementReferenceException se) {
+	        System.err.println("Stale element encountered. Consider re-checking element reference before use.");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
   
   
   

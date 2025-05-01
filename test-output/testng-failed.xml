@@ -5,8 +5,8 @@
     <classes>
       <class name="verifyparticularhotel.VerifyHotelDetailsPage">
         <methods>
-          <include name="checkingpriceiscorrectornot"/>
           <include name="enterHotelname"/>
+          <include name="checkBidCounteroptionworkornot"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- verifyparticularhotel.VerifyHotelDetailsPage -->
