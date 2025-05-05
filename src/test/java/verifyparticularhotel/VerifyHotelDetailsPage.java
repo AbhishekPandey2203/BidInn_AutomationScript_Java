@@ -1115,16 +1115,8 @@ void enterHotelname() throws InterruptedException
   
   //*****01-may-25******---BidNow Button each work---
   
-  
-//  void functomakestringofcheckinoutsame(String )
-//  {
-//	  checkInDate
-//	  checkOutDate
-//  }
-  
-  
-  
-  
+
+  //-------------check bidin button working or not-------------------
   
   @Test
   void checkBidCounteroptionworkornot() {

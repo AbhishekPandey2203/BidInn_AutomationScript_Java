@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="verifyparticularhotel.VerifyHotelDetailsPage">
+      <class name="paymentpagebooking.paymentpagebooking">
         <methods>
           <include name="enterHotelname"/>
-          <include name="checkBidCounteroptionworkornot"/>
-          <include name="tearDown"/>
+          <include name="checkaddguestbuttonwork"/>
         </methods>
-      </class> <!-- verifyparticularhotel.VerifyHotelDetailsPage -->
+      </class> <!-- paymentpagebooking.paymentpagebooking -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
