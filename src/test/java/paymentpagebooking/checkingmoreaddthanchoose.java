@@ -98,13 +98,13 @@ public class checkingmoreaddthanchoose {
 	}
 	
 	
-//	 @AfterClass
-//	  void tearDown() {
-//	        if (driver != null) {
-//	            driver.quit(); // Ensure the browser closes after the test
-//	           
-//	        }
-//	    }
+	 @AfterClass
+	  void tearDown() {
+	        if (driver != null) {
+	            driver.quit(); // Ensure the browser closes after the test
+	           
+	        }
+	    }
 
 	
 	 
@@ -288,11 +288,7 @@ Assert.assertTrue((elements.size()!=elements1.size()));
     
 //    Assert.assertTrue(errormsg.getText().contains(val));
 
-		
-		
-		
-		
-		
+
 		
 	}
 	

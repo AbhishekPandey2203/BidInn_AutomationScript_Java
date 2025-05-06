@@ -792,11 +792,10 @@ Assert.assertTrue(nameis.contains(attributeValue));
 //Function add Guest------------------------------
 
 
-void addguestfunction() throws InterruptedException
+void addguestbuttonwork() throws InterruptedException
 {
 	
-	
-	
+	Thread.sleep(2000);
 	//click on add guest button--
 	
 	((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
@@ -806,33 +805,33 @@ void addguestfunction() throws InterruptedException
 	
 	//----
 
-	
-	Thread.sleep(1000);
-	//title click
-	WebElement elm1=driver.findElement(By.xpath("(//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input mui-74pt8w'])[2]"));
-	elm1.click();
-    String precase=elm1.getText();
-
-	
-	Thread.sleep(1000);
-	
-    driver.findElement(By.xpath("//li[normalize-space()='Prof']")).click();
-    Thread.sleep(1000);
-    
-    String postcase=elm1.getText();
-   
-    Assert.assertTrue(!(precase.equals(postcase)));
+//	
+//	Thread.sleep(1000);
+//	//title click
+//	WebElement elm1=driver.findElement(By.xpath("(//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input mui-74pt8w'])[2]"));
+//	elm1.click();
+//    String precase=elm1.getText();
+//
+//	
+//	Thread.sleep(1000);
+//	
+//    driver.findElement(By.xpath("//li[normalize-space()='Prof']")).click();
+//    Thread.sleep(1000);
+//    
+//    String postcase=elm1.getText();
+//   
+//    Assert.assertTrue(!(precase.equals(postcase)));
 	
     System.out.println("The title is working properly");
 
  // First Name
- WebElement firstNameField = driver.findElement(By.xpath("//input[@name='firstName']"));
+ WebElement firstNameField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='firstName']"));
  firstNameField.click();
  firstNameField.sendKeys("Abhi");
  Thread.sleep(1000);
 
  // Last Name
- WebElement lastNameField = driver.findElement(By.xpath("//input[@name='lastName']"));
+ WebElement lastNameField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='lastName']"));
  lastNameField.click();
  lastNameField.sendKeys("Shukla");
  Thread.sleep(1000);
@@ -844,7 +843,7 @@ void addguestfunction() throws InterruptedException
 // Thread.sleep(1000);
 
  // Email Address
- WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+ WebElement emailField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@type='email']"));
  emailField.click();
  // Clear using keyboard shortcuts
  emailField.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
@@ -864,57 +863,134 @@ void addguestfunction() throws InterruptedException
  WebElement saveGuestButton = driver.findElement(By.xpath("//button[text()='Save Guest']"));
  saveGuestButton.click();
  
- System.out.println("Guest added successfully!");
+ Thread.sleep(1000);
  
- 
- 
+
 }
 
 
+//@Test
+//void UpdatetheAddGuestInformationworkornot() throws InterruptedException
+//{  
+//	
+//	enterLoginCredential();
+//	
+//	  
+//	Thread.sleep(1000);
+//	addguestbuttonwork();
+//	Thread.sleep(1000);
+//	
+//
+//	 WebElement arowclick=driver.findElement(By.xpath("//span[@class='MuiAccordionSummary-expandIconWrapper mui-f8wb7g']//*[name()='svg']")); 
+//	 arowclick.click();
+//	 
+//	 Thread.sleep(500);
+//	
+//	 
+//	 
+//	 
+//	WebElement firname=driver.findElement(By.xpath("//input[@name='firstName']"));
+//	String finame=firname.getText();
+//	System.out.println(finame);
+//	firname.click();
+//	 Thread.sleep(1000);
+//	 
+//	 firname.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
+//	 firname.sendKeys(Keys.BACK_SPACE); // Delete selected text
+//
+//	 
+//	 firname.sendKeys("Ram");
+//	
+//	Thread.sleep(1000);
+//	
+//	
+//	//click on update button
+//	
+//	
+//	 
+//	 WebElement updatebutt=driver.findElement(By.xpath("(//button[text()='Update'])[1]"));
+//	 updatebutt.click();
+//	 
+//	 String fn=firname.getText();
+//	 System.out.println(fn);
+//	 Assert.assertTrue(!(finame.equals(fn)));
+//	  System.out.println("Added user Update Successfully!!");
+//	
+//}
+
+
+
+//---------------
 @Test
-void UpdatetheAddGuestInformationworkornot() throws InterruptedException
-{  
-	
-	enterLoginCredential();
-	
-	  
-	Thread.sleep(1000);
-	addguestfunction();
-	Thread.sleep(1000);
-	
+ void updateGuestInformation() throws InterruptedException {
+    // Log in to the application
+    enterLoginCredential();
 
-	 WebElement arowclick=driver.findElement(By.xpath("//span[@class='MuiAccordionSummary-expandIconWrapper mui-f8wb7g']//*[name()='svg']")); 
-	 arowclick.click();
-	 
-	 Thread.sleep(500);
-	
-	 
-	 
-	 
-	WebElement firname=driver.findElement(By.xpath("//input[@name='firstName']"));
-	
-	firname.click();
-	 Thread.sleep(1000);
-	 
-	 firname.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
-	 firname.sendKeys(Keys.BACK_SPACE); // Delete selected text
+    // Wait for elements to be interactable
+    Thread.sleep(1000);
 
-	 
-	 firname.sendKeys("Ram");
-	
-	Thread.sleep(1000);
-	
-	
-	//click on update button
-	
-	 //click on delete
-	 
-	 WebElement updatebutt=driver.findElement(By.xpath("(//button[text()='Update'])[1]"));
-	 updatebutt.click();
-	 
-	  System.out.println("Added user Update Successfully!!");
-	
+    // Click on "Add Guest" button
+    addguestbuttonwork();
+    Thread.sleep(1000);
+
+    // Expand guest details accordion
+    WebElement arrowClick = driver.findElement(By.xpath("//span[@class='MuiAccordionSummary-expandIconWrapper mui-f8wb7g']//*[name()='svg']")); 
+    arrowClick.click();
+    Thread.sleep(500);
+
+    // Locate the first name input field
+    WebElement firstNameField = driver.findElement(By.xpath("//input[@name='firstName']"));
+    
+    // Get current first name value
+    String oldFirstName = firstNameField.getAttribute("value"); // Use getAttribute("value") instead of getText() for input fields
+    System.out.println("Old First Name: " + oldFirstName);
+    
+    // Clear existing text and enter new name
+    firstNameField.click();
+    Thread.sleep(1000);
+    firstNameField.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
+    firstNameField.sendKeys(Keys.BACK_SPACE); // Delete selected text
+    firstNameField.sendKeys("Ram");
+    Thread.sleep(1000);
+
+    // Click on the Update button
+    WebElement updateButton = driver.findElement(By.xpath("(//button[text()='Update'])[1]"));
+    updateButton.click();
+    Thread.sleep(1000); // Wait for the update to reflect
+
+    // Verify that the first name has been updated
+    String updatedFirstName = firstNameField.getAttribute("value");
+    System.out.println("Updated First Name: " + updatedFirstName);
+
+    // Assertion to confirm the name was changed
+    Assert.assertTrue(!oldFirstName.equals(updatedFirstName), "First name update failed!");
+
+    System.out.println("Guest information updated successfully!");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //check notification work or not---

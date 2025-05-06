@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-06T16:23:41 IST" name="Default suite" finished-at="2025-05-06T16:24:08 IST" duration-ms="26922">
+  <suite started-at="2025-05-06T17:23:27 IST" name="Default suite" finished-at="2025-05-06T17:23:57 IST" duration-ms="30588">
     <groups>
     </groups>
-    <test started-at="2025-05-06T16:23:41 IST" name="Default test" finished-at="2025-05-06T16:24:08 IST" duration-ms="26922">
-      <class name="paymentpagebooking.checkingmoreaddthanchoose">
-        <test-method is-config="true" signature="enterHotelname()[pri:0, instance:paymentpagebooking.checkingmoreaddthanchoose@ae13544]" started-at="2025-05-06T16:23:41 IST" name="enterHotelname" finished-at="2025-05-06T16:23:51 IST" duration-ms="10112" status="PASS">
+    <test started-at="2025-05-06T17:23:27 IST" name="Default test" finished-at="2025-05-06T17:23:57 IST" duration-ms="30588">
+      <class name="paymentpagebooking.paymentpagebooking">
+        <test-method is-config="true" signature="enterHotelname()[pri:0, instance:paymentpagebooking.paymentpagebooking@3d34d211]" started-at="2025-05-06T17:23:27 IST" name="enterHotelname" finished-at="2025-05-06T17:23:39 IST" duration-ms="12928" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enterHotelname -->
-        <test-method signature="checkingaddmoreguestthannoofguest()[pri:0, instance:paymentpagebooking.checkingmoreaddthanchoose@ae13544]" started-at="2025-05-06T16:23:51 IST" name="checkingaddmoreguestthannoofguest" finished-at="2025-05-06T16:24:08 IST" duration-ms="16771" status="PASS">
+        <test-method signature="updateGuestInformation()[pri:0, instance:paymentpagebooking.paymentpagebooking@3d34d211]" started-at="2025-05-06T17:23:39 IST" name="updateGuestInformation" finished-at="2025-05-06T17:23:57 IST" duration-ms="17252" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkingaddmoreguestthannoofguest -->
-      </class> <!-- paymentpagebooking.checkingmoreaddthanchoose -->
+        </test-method> <!-- updateGuestInformation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:paymentpagebooking.paymentpagebooking@3d34d211]" started-at="2025-05-06T17:23:57 IST" name="tearDown" finished-at="2025-05-06T17:23:57 IST" duration-ms="374" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- paymentpagebooking.paymentpagebooking -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
