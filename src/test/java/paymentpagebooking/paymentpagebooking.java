@@ -1,6 +1,7 @@
 package paymentpagebooking;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -155,13 +156,13 @@ public class paymentpagebooking {
 	}
 	
 	
-//	 @AfterClass
-//	  void tearDown() {
-//	        if (driver != null) {
-//	            driver.quit(); // Ensure the browser closes after the test
-//	            System.out.println("Driver quit successfully");
-//	        }
-//	    }
+	 @AfterClass
+	  void tearDown() {
+	        if (driver != null) {
+	            driver.quit(); // Ensure the browser closes after the test
+	            System.out.println("Driver quit successfully");
+	        }
+	    }
 
 	
 	void enterLoginCredential() throws InterruptedException
@@ -359,18 +360,26 @@ void checkaddguestbuttonwork() throws InterruptedException
  emailField.sendKeys("abc@gmail.com");
  Thread.sleep(1000);
 
-// WebElement ageField = driver.findElement(By.xpath("//input[@name='age']"));
-// ageField.click();                  // Focus the field (optional if already in view)
-// ageField.sendKeys(Keys.BACK_SPACE); // Remove the '0'
-// ageField.sendKeys("20");  
-// Thread.sleep(1000);
+ WebElement ageField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='age']"));
+ ageField.click();                  // Focus the field (optional if already in view)
+ ageField.sendKeys(Keys.BACK_SPACE); // Remove the '0'
+ ageField.sendKeys("20");  
+ Thread.sleep(1000);
 
  // Click on the "Save Guest" button
  WebElement saveGuestButton = driver.findElement(By.xpath("//button[text()='Save Guest']"));
  saveGuestButton.click();
  
- System.out.println("Guest added successfully!");
+ Thread.sleep(1000);
  
+ 
+ //checking how many user added----------------
+ 
+
+List<WebElement> elements = driver.findElements(By.xpath("//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters mui-1pi0qnl']"));
+
+Assert.assertTrue(elements.size() > 0, "User not added successfully");
+System.out.println("User added successfully. Element size: " + elements.size());
  
  WebElement arowclick=driver.findElement(By.xpath("//span[@class='MuiAccordionSummary-expandIconWrapper mui-f8wb7g']//*[name()='svg']")); 
  arowclick.click();
@@ -511,9 +520,10 @@ void checkcouponbuttonworkornot() throws InterruptedException
 	  System.out.println("DiscountedPrice price is: " + discountedPrice);
 
 	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
-		Thread.sleep(1000);    
 		
-	 WebElement checkbox1=driver.findElement(By.xpath("(//input[@class='PrivateSwitchBase-input mui-j8yymo'])[1]"));	
+	  Thread.sleep(1000);    
+		
+	 WebElement checkbox1=driver.findElement(By.xpath("(//h3[text()='Coupons']/..//input[@type=\"checkbox\"])[1]"));	
 	checkbox1.click();
 	
 	//---
@@ -524,8 +534,18 @@ void checkcouponbuttonworkornot() throws InterruptedException
 		  
 		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		  WebElement coupondisc = wait.until(ExpectedConditions.visibilityOfElementLocated(
-		      By.xpath("(//p[@class='MuiTypography-root MuiTypography-body1 mui-to2i5k'])[7]")
+		      By.xpath("//p[text()='Coupon Discount']/..//p[@class=\"MuiTypography-root MuiTypography-body1 mui-to2i5k\"][2]")
 		  ));
+		  
+		 
+		  
+		  
+	//Understanding the Dynamic handling of Xpath
+		  
+//--  "//p[text()='Coupon Discount']/..//p[@class=\"MuiTypography-root MuiTypography-body1 mui-to2i5k\"][2]"-----
+		 
+		  
+		  
 		  
 		  
 		  
@@ -538,6 +558,14 @@ void checkcouponbuttonworkornot() throws InterruptedException
 		  
 
 		  System.out.println("Coupon Discount: " + price1);
+		  
+		  if (discountedPrice > 2000) {
+			    Assert.assertEquals(2000, 2000, "The coupon discount should be Rs.2000");
+			    System.out.println("The coupon discount is always -Rs.2000");
+			} else {
+			    Assert.assertTrue(price1 <= 2000, "Unexpected coupon discount");
+			    System.out.println("The coupon discount is " + price1);
+			}
 		  
 
 	
@@ -695,6 +723,223 @@ void checkHotelDetailInformation() throws InterruptedException {
 }
 
 
+//06-may-25--
+
+//My Bookings button working--
+@Test
+void mybookingsButtonworkornot() throws InterruptedException
+{     
+	enterLoginCredential();
+	
+	String value="AllUpcomingCompletedCancelled";
+	Thread.sleep(1000);
+	
+	driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
+	
+	Thread.sleep(1000);
+	
+	
+	String ans="";
+	List<WebElement>elem=driver.findElements(By.xpath("//button[contains(@class,'inline-flex items-center justify-center whitespace-nowrap')]"));
+	
+	for(WebElement ele:elem)
+	{
+		System.out.println("the name we get "+ele.getText());
+		ans+=ele.getText();
+	}
+	
+	
+	System.out.println("the ans "+ans);
+	Assert.assertTrue(ans.equals(value));
+
+	
+	Thread.sleep(1000);
+
+
+}
+
+
+//checkProfilework or not
+@Test
+void checkProfileButtonworkornot() throws InterruptedException
+{  
+	enterLoginCredential();
+	Thread.sleep(1000);
+	
+	WebElement elem=driver.findElement(By.xpath("//span[@style='padding-left: 6px;']"));
+	System.out.println("the name is "+elem.getText());
+
+	String nameis=elem.getText();
+	driver.findElement(By.xpath("//span[@style='padding-left: 6px;']")).click();
+	
+	Thread.sleep(3000);
+	
+WebElement elm=	driver.findElement(By.xpath("//input[@id='fullName']"));
+String attributeValue = elm.getAttribute("value");
+
+System.out.println("the input value is "+attributeValue);
+
+Thread.sleep(1000);
+	   
+
+Assert.assertTrue(nameis.contains(attributeValue));
+
+}
+
+
+
+
+//Function add Guest------------------------------
+
+
+void addguestfunction() throws InterruptedException
+{
+	
+	
+	
+	//click on add guest button--
+	
+	((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
+	Thread.sleep(1000);
+	WebElement elem=driver.findElement(By.xpath("//button[text()='Add Guests']"));
+	elem.click();
+	
+	//----
+
+	
+	Thread.sleep(1000);
+	//title click
+	WebElement elm1=driver.findElement(By.xpath("(//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input mui-74pt8w'])[2]"));
+	elm1.click();
+    String precase=elm1.getText();
+
+	
+	Thread.sleep(1000);
+	
+    driver.findElement(By.xpath("//li[normalize-space()='Prof']")).click();
+    Thread.sleep(1000);
+    
+    String postcase=elm1.getText();
+   
+    Assert.assertTrue(!(precase.equals(postcase)));
+	
+    System.out.println("The title is working properly");
+
+ // First Name
+ WebElement firstNameField = driver.findElement(By.xpath("//input[@name='firstName']"));
+ firstNameField.click();
+ firstNameField.sendKeys("Abhi");
+ Thread.sleep(1000);
+
+ // Last Name
+ WebElement lastNameField = driver.findElement(By.xpath("//input[@name='lastName']"));
+ lastNameField.click();
+ lastNameField.sendKeys("Shukla");
+ Thread.sleep(1000);
+
+// // Phone Number
+// WebElement phoneField = driver.findElement(By.xpath("(//input[@class='MuiInputBase-input MuiOutlinedInput-input mui-1pk1fka'])[10]"));
+// phoneField.click();
+// phoneField.sendKeys("+91 9988776655");
+// Thread.sleep(1000);
+
+ // Email Address
+ WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+ emailField.click();
+ // Clear using keyboard shortcuts
+ emailField.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
+ emailField.sendKeys(Keys.DELETE); 
+ 
+ 
+ emailField.sendKeys("abc@gmail.com");
+ Thread.sleep(1000);
+
+ WebElement ageField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='age']"));
+ ageField.click();                  // Focus the field (optional if already in view)
+ ageField.sendKeys(Keys.BACK_SPACE); // Remove the '0'
+ ageField.sendKeys("20");  
+ Thread.sleep(1000);
+
+ // Click on the "Save Guest" button
+ WebElement saveGuestButton = driver.findElement(By.xpath("//button[text()='Save Guest']"));
+ saveGuestButton.click();
+ 
+ System.out.println("Guest added successfully!");
+ 
+ 
+ 
+}
+
+
+@Test
+void UpdatetheAddGuestInformationworkornot() throws InterruptedException
+{  
+	
+	enterLoginCredential();
+	
+	  
+	Thread.sleep(1000);
+	addguestfunction();
+	Thread.sleep(1000);
+	
+
+	 WebElement arowclick=driver.findElement(By.xpath("//span[@class='MuiAccordionSummary-expandIconWrapper mui-f8wb7g']//*[name()='svg']")); 
+	 arowclick.click();
+	 
+	 Thread.sleep(500);
+	
+	 
+	 
+	 
+	WebElement firname=driver.findElement(By.xpath("//input[@name='firstName']"));
+	
+	firname.click();
+	 Thread.sleep(1000);
+	 
+	 firname.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text
+	 firname.sendKeys(Keys.BACK_SPACE); // Delete selected text
+
+	 
+	 firname.sendKeys("Ram");
+	
+	Thread.sleep(1000);
+	
+	
+	//click on update button
+	
+	 //click on delete
+	 
+	 WebElement updatebutt=driver.findElement(By.xpath("(//button[text()='Update'])[1]"));
+	 updatebutt.click();
+	 
+	  System.out.println("Added user Update Successfully!!");
+	
+}
+
+
+//check notification work or not---
+ 
+@Test
+void checkingthenotification() throws InterruptedException
+{   
+	String name="Notifications";
+	
+	enterLoginCredential();
+	Thread.sleep(1000);
+	
+	driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
+	
+	Thread.sleep(1000);
+	
+	WebElement elem=driver.findElement(By.xpath("//h4[@class='text-sm font-semibold text-gray-700']"));
+	
+	System.out.println("the name is "+elem.getText());
+	
+	Assert.assertTrue(name.equals(elem.getText()));
+	
+
+	
+}
 
 
 

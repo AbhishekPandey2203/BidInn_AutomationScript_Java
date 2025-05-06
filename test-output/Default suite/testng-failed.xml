@@ -5,8 +5,9 @@
     <classes>
       <class name="paymentpagebooking.paymentpagebooking">
         <methods>
+          <include name="tearDown"/>
+          <include name="UpdatetheAddGuestInformationworkornot"/>
           <include name="enterHotelname"/>
-          <include name="checkaddguestbuttonwork"/>
         </methods>
       </class> <!-- paymentpagebooking.paymentpagebooking -->
     </classes>
