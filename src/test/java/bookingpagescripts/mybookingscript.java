@@ -176,6 +176,45 @@ public class mybookingscript {
         // Final assertion
         Assert.assertTrue(isAllCorrect, "One or more booking details do not match.");
     }
+    
+   //***check each tab contains their specific tab contains cards or not--
+    
+    @Test
+    void completedtabcase() throws InterruptedException
+    {  
+        Thread.sleep(1000);
+
+        LoginButtonclick();
+        
+        // Click on 'My Bookings'
+        driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
+        
+        Thread.sleep(1000);
+        
+        // Click on 'Completed' tab
+        WebElement completedBtn = driver.findElement(By.xpath("(//button[contains(@class,'inline-flex items-center justify-center whitespace-nowrap')])[3]"));
+        completedBtn.click();
+
+        String wewant="Completed";
+        
+      List<WebElement>lisel= driver.findElements(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-1a82urx']"));
+        
+      for(WebElement el:lisel)
+      {
+    	  String gett=el.getText();
+    	  System.out.println("The text is "+gett);
+    	  Assert.assertTrue(gett.contains(wewant));
+      }
+    	
+    }
+    
+    
+    //*******cancelled case********
+    
+    
+    
+    
+    
 
 	
 

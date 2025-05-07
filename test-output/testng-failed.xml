@@ -6,7 +6,7 @@
       <class name="bookingpagescripts.mybookingscript">
         <methods>
           <include name="teardown"/>
-          <include name="mybookingsdetailsissameornotincompletedcase"/>
+          <include name="completedtabcase"/>
         </methods>
       </class> <!-- bookingpagescripts.mybookingscript -->
     </classes>
