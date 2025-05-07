@@ -145,11 +145,42 @@ public class mybookingscript {
 
         WebElement checkinElem = driver.findElement(By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-quwrhc'])[1]"));
         String checkin = checkinElem.getText();
-        System.out.println("the checkin " + checkin);
+        
+        
+        //extracting the date part---
+        //code is java
+    	String res="";
+        String []date=checkin.split("-"); //kis basis pe split krna h
+        if(date.length>=3)
+        {
+        	res=date[2];
+        }
+        
+        
+        
+        
+        System.out.println("the checkin " + res);
 
         WebElement checkoutElem = driver.findElement(By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-quwrhc'])[2]"));
         String checkout = checkoutElem.getText();
-        System.out.println("the checkout " + checkout);
+        
+        //extracting the date part---
+        //code is java
+    	String res1="";
+        String []dae=checkout.split("-"); //kis basis pe split krna h
+        if(dae.length>=3)
+        {
+        	res1=dae[2];
+        }
+        
+        
+        
+        System.out.println("the checkout " + res1);
+        
+        
+        
+        
+     
 
         WebElement totalAmountElem = driver.findElement(By.xpath("(//p[@class='MuiTypography-root MuiTypography-body2 mui-czk095'])[5]"));
         String amountAfter = totalAmountElem.getText().replace("₹", "").trim();
@@ -169,8 +200,13 @@ public class mybookingscript {
         boolean isAllCorrect =
             actualTabs.equals(expectedTabs) &&
             bookIdAfter.equals(bookIdBefore) &&
-            hotelNameBefore.equals(hotelNameAfter);
-           
+            hotelNameBefore.equals(hotelNameAfter) &&
+            dateSummary.contains(res1) &&
+            dateSummary.contains(res) &&
+            amountAfter.contains(amountBefore) &&
+            fullLocation.contains(addressBefore)
+            ;
+      
            
            
         // Final assertion

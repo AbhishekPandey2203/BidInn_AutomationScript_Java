@@ -2,16 +2,16 @@
 <testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-07T14:52:05 IST" name="Default suite" finished-at="2025-05-07T14:52:14 IST" duration-ms="8842">
+  <suite started-at="2025-05-07T15:34:22 IST" name="Default suite" finished-at="2025-05-07T15:34:35 IST" duration-ms="12809">
     <groups>
     </groups>
-    <test started-at="2025-05-07T14:52:05 IST" name="Default test" finished-at="2025-05-07T14:52:14 IST" duration-ms="8842">
+    <test started-at="2025-05-07T15:34:22 IST" name="Default test" finished-at="2025-05-07T15:34:35 IST" duration-ms="12809">
       <class name="bookingpagescripts.mybookingscript">
-        <test-method signature="cancelledtabcase()[pri:0, instance:bookingpagescripts.mybookingscript@4b2bac3f]" started-at="2025-05-07T14:52:05 IST" name="cancelledtabcase" finished-at="2025-05-07T14:52:14 IST" duration-ms="8417" status="PASS">
+        <test-method signature="mybookingsdetailsissameornotincompletedcase()[pri:0, instance:bookingpagescripts.mybookingscript@4b2bac3f]" started-at="2025-05-07T15:34:22 IST" name="mybookingsdetailsissameornotincompletedcase" finished-at="2025-05-07T15:34:34 IST" duration-ms="12375" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- cancelledtabcase -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:bookingpagescripts.mybookingscript@4b2bac3f]" started-at="2025-05-07T14:52:14 IST" name="teardown" finished-at="2025-05-07T14:52:14 IST" duration-ms="394" status="PASS">
+        </test-method> <!-- mybookingsdetailsissameornotincompletedcase -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bookingpagescripts.mybookingscript@4b2bac3f]" started-at="2025-05-07T15:34:34 IST" name="teardown" finished-at="2025-05-07T15:34:35 IST" duration-ms="406" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
