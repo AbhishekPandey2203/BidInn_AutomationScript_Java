@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="paymentpagebooking.paymentpagebooking">
+      <class name="bookingpagescripts.mybookingscript">
         <methods>
-          <include name="tearDown"/>
-          <include name="UpdatetheAddGuestInformationworkornot"/>
-          <include name="enterHotelname"/>
+          <include name="teardown"/>
+          <include name="mybookingsdetailsissameornotincompletedcase"/>
         </methods>
-      </class> <!-- paymentpagebooking.paymentpagebooking -->
+      </class> <!-- bookingpagescripts.mybookingscript -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
