@@ -1,9 +1,12 @@
 package bookingpagescripts;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -275,6 +278,149 @@ public class mybookingscript {
       }
     	
     }
+    
+    
+//   ***** 8-May-25  ******//
+    
+   //checking the upcoming booking scenario--
+    
+    @Test
+    void checkupcomingbookscenariocase() throws InterruptedException
+    {   
+    	 Thread.sleep(1000);
+     
+         LoginButtonclick();
+
+         // Click on 'My Bookings'
+         driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
+         Thread.sleep(1000);
+
+         // Click on 'Upcoming' tab
+         WebElement upcomingbtn = driver.findElement(By.xpath("(//button[contains(@class,'inline-flex items-center justify-center whitespace-nowrap')])[2]"));
+         upcomingbtn.click();
+  
+    	Thread.sleep(1000);  
+    	
+    	//click on the card-to go into booking details
+    	
+    	driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-ula612']")).click();
+    	
+    	// retrieve the dates
+    	
+    	  WebElement checkinElem = driver.findElement(By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-quwrhc'])[1]"));
+          String checkin = checkinElem.getText();
+          
+          
+          //extracting the date part---
+          //code is java
+      	String res="";
+          String []date=checkin.split("-"); //kis basis pe split krna h
+
+              	res+=date[1]+date[2];
+              	
+         int checkin1=Integer.parseInt(res);
+     
+          
+//          System.out.println("the checkin " + res);
+//
+//          WebElement checkoutElem = driver.findElement(By.xpath("(//h5[@class='MuiTypography-root MuiTypography-h5 mui-quwrhc'])[2]"));
+//          String checkout = checkoutElem.getText();
+//          
+//          //extracting the date part---
+//          //code is java
+//      	String res1="";
+//          String []dae=checkout.split("-"); //kis basis pe split krna h
+//        
+//        	  
+//              	res1+=dae[1]+dae[2];
+
+          
+      // --- getting local date--
+          LocalDate today = LocalDate.now();
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMdd"); 
+          String formattedDate = today.format(formatter);
+          
+          System.out.println("The date is "+formattedDate);
+          
+          int currdate=Integer.parseInt(formattedDate);
+          
+         Assert.assertTrue(checkin1>currdate);
+
+     //---let check the upcoming date should be greater then current date
+         System.out.println("The upcoming date is higher than next to current date");
+  
+	
+    }
+    
+ //-----------------checking view Policy work or not---  
+    
+   @Test 
+  void viewhotelpoliciesbuttonworkornot() throws InterruptedException
+  {     
+	   String hp="Hotel Polices";
+	   
+	   checkupcomingbookscenariocase();
+	   
+	   ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
+	   
+	   // click on the button
+	   Thread.sleep(1000);
+	   
+	   driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
+	   
+	   driver.findElement(By.xpath("//button[text()='View Hotel Policies']")).click();
+	   Thread.sleep(1000);
+	  //--now
+	   WebElement txt=driver.findElement(By.xpath("//h2[@id='room-amenities-modal-title']"));
+	   System.out.println("the text is "+txt.getText());
+	    
+	    Assert.assertTrue(hp.equals(txt.getText()));
+	    
+	    //close button is click or not
+	    
+	    WebElement closeButton = driver.findElement(By.xpath("//button[text()='Close']"));
+
+	 // Assert that the close button is displayed and enabled (clickable)
+	 Assert.assertTrue(closeButton.isDisplayed());
+	 Assert.assertTrue(closeButton.isEnabled());
+
+	 // Click the close button
+	 closeButton.click();
+	 
+	 //print the statement
+	 System.out.println("The close button is working properly");
+
+	  
+    }
+    
+   
+   //---cancel booking --
+   
+   @Test
+   void cancelbuttonworkornot() throws InterruptedException
+   {    
+	   String txtis="Submit your Cancellation request for the booking on";
+	   //---working on cancel button working
+	   checkupcomingbookscenariocase();
+	   
+	   //cancel button click
+	   driver.findElement(By.xpath("//button[text()=' Cancel Booking']")).click();
+	   
+	   // check form open
+	   
+	   WebElement formtxt=driver.findElement(By.xpath("//p[@class='font-serif text-xl font-semibold tracking-wider']"));
+	   System.out.println("the txt is "+formtxt.getText());
+	   
+	   Assert.assertTrue(txtis.equals(formtxt.getText()));
+	   
+	   System.out.println("The form is opening");
+	   
+	   
+	   
+   }
+    
+    
+    
     
     
     
