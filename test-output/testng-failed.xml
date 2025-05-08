@@ -5,7 +5,8 @@
     <classes>
       <class name="bookingpagescripts.mybookingscript">
         <methods>
-          <include name="cancelbuttonworkornot"/>
+          <include name="teardown"/>
+          <include name="updatetheprofileimage"/>
         </methods>
       </class> <!-- bookingpagescripts.mybookingscript -->
     </classes>

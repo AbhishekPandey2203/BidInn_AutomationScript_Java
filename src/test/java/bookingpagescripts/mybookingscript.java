@@ -1,5 +1,10 @@
 package bookingpagescripts;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 // 7-05-25
@@ -74,12 +80,12 @@ public class mybookingscript {
 	}
 	
 //	
-//    @AfterMethod
-//    void teardown() {
-//        if (driver != null) {
-//            driver.quit(); // Ensures the session is fully terminated
-//        }
-//    }
+    @AfterMethod
+    void teardown() {
+        if (driver != null) {
+            driver.quit(); // Ensures the session is fully terminated
+        }
+    }
 
    //My booking---
     
@@ -422,7 +428,7 @@ public class mybookingscript {
    //-------------------
    
    @Test
-   void personalinforupdateornot() throws InterruptedException
+   void personalinforupdateornot() throws InterruptedException, AWTException
    {
 	   checkupcomingbookscenariocase();
 	   //click on the personal information handle
@@ -432,7 +438,7 @@ public class mybookingscript {
 	clck.click();
 	  Thread.sleep(1000);
 	
-	//---navigate to the personal information page
+//---navigate to the personal information page
 	
 	//getting name
 	  
@@ -492,6 +498,56 @@ inpnme.sendKeys(Keys.BACK_SPACE);
  {
 	 System.out.println("The name and email address has been successfully update.");
  }
+ 
+   }
+   
+   
+   @Test
+   void updatetheprofileimage() throws InterruptedException, AWTException
+   {
+ //update the profile image as well ------------
+	   checkupcomingbookscenariocase();
+ 
+	   Thread.sleep(1000);
+	  // Click on the SVG camera icon to open file upload dialog
+      WebElement cameraIcon = driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M3 17.25V2')]"));
+      cameraIcon.click();
+
+      // Wait for file dialog to open
+      Thread.sleep(1000);
+
+      // Path to image file
+      String filePath = "C:\\Users\\Abhishek Pandey\\Downloads\\bidinnwa2.jpg";
+
+
+      // Copy file path to clipboard
+      StringSelection selection = new StringSelection(filePath);
+      Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+
+      // Use Robot to paste path and press Enter
+      Robot robot = new Robot();
+      robot.delay(1000);
+
+      // CTRL + V
+      robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_CONTROL);
+
+      // ENTER
+      robot.keyPress(KeyEvent.VK_ENTER);
+      robot.keyRelease(KeyEvent.VK_ENTER);
+
+      // Wait for upload to complete or for some UI change
+      Thread.sleep(3000);
+ 
+      
+      WebElement imgdis=driver.findElement(By.xpath("//div[text()='Profile image updated successfully']"));
+      
+      if(imgdis.isDisplayed())
+      {
+    	  System.out.println("Image is updated successfully!!");
+      }
 	 
 	   
    }
