@@ -5,8 +5,7 @@
     <classes>
       <class name="bookingpagescripts.mybookingscript">
         <methods>
-          <include name="teardown"/>
-          <include name="updatetheprofileimage"/>
+          <include name="checkupcomingbookscenariocase"/>
         </methods>
       </class> <!-- bookingpagescripts.mybookingscript -->
     </classes>

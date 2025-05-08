@@ -310,6 +310,44 @@ public class mybookingscript {
     	//click on the card-to go into booking details
     	
     	driver.findElement(By.xpath("//h5[@class='MuiTypography-root MuiTypography-h5 mui-ula612']")).click();
+    	   
+    	//check imag is dispalyed
+    	
+      WebElement imgdis=	driver.findElement(By.xpath("//img[@alt='Hotel Shyam Krishna(Test_Hotel)']"));
+    	
+    	if(imgdis.isDisplayed())
+    	{
+    	  System.out.println("The Image is displayed!!");
+    	}
+    	
+    	
+    	//check map is displayed...
+    	
+    	// Locate the iframe
+    	WebElement iframe = driver.findElement(By.tagName("iframe"));
+
+    	// Switch to the iframe
+    	driver.switchTo().frame(iframe);
+
+    	// Try to find the map inside the iframe
+    	WebElement map = driver.findElement(By.tagName("iframe")); // Use your actual locator
+
+    	if (!map.isDisplayed()) {
+    	    System.out.println("Map is displayed inside the iframe.");
+    	} else {
+    	    System.out.println("Map is NOT displayed inside the iframe.");
+    	}
+
+    	// Always switch back to the main document
+    	driver.switchTo().defaultContent();
+
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	// retrieve the dates
     	
@@ -353,7 +391,7 @@ public class mybookingscript {
          Assert.assertTrue(checkin1>currdate);
 
      //---let check the upcoming date should be greater then current date
-         System.out.println("The upcoming date is higher than next to current date");
+         System.out.println("The upcoming date is higher than next to current date");  
   
 	
     }
@@ -373,6 +411,10 @@ public class mybookingscript {
 	   Thread.sleep(1000);
 	   
 	   driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
+	   
+	   
+	   
+	   
 	   
 	   driver.findElement(By.xpath("//button[text()='View Hotel Policies']")).click();
 	   Thread.sleep(1000);
