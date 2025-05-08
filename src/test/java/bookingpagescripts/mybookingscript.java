@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 // 7-05-25
@@ -74,12 +74,12 @@ public class mybookingscript {
 	}
 	
 //	
-    @AfterMethod
-    void teardown() {
-        if (driver != null) {
-            driver.quit(); // Ensures the session is fully terminated
-        }
-    }
+//    @AfterMethod
+//    void teardown() {
+//        if (driver != null) {
+//            driver.quit(); // Ensures the session is fully terminated
+//        }
+//    }
 
    //My booking---
     
@@ -418,6 +418,87 @@ public class mybookingscript {
 	   
 	   
    }
+   
+   //-------------------
+   
+   @Test
+   void personalinforupdateornot() throws InterruptedException
+   {
+	   checkupcomingbookscenariocase();
+	   //click on the personal information handle
+	   Thread.sleep(1000);
+	   
+	WebElement clck=   driver.findElement(By.xpath("//span[@class='text-gray-800 font-medium']"));
+	clck.click();
+	  Thread.sleep(1000);
+	
+	//---navigate to the personal information page
+	
+	//getting name
+	  
+  String nme=driver.findElement(By.xpath("//input[@id='fullName']")).getAttribute("value");
+	
+	  System.out.println(nme);
+	  
+	//getting email id
+
+  String emailid=driver.findElement(By.xpath("//input[@id='emailAddress']")).getAttribute("value");
+	 	
+	 System.out.println(emailid);
+	 
+	 
+	//update the existing value of name and email--
+  
+  WebElement inpnme=driver.findElement(By.xpath("//input[@id='fullName']"));
+  inpnme.click();
+  
+  
+//Select all text (Ctrl + A), then delete (Backspace)
+inpnme.sendKeys(Keys.chord(Keys.CONTROL, "a"));  // Select all
+inpnme.sendKeys(Keys.BACK_SPACE); 
+
+ Thread.sleep(1000);
+ inpnme.sendKeys(nme);
+ 
+ Thread.sleep(1000);
+ 
+ //update email id-
+ 
+
+ WebElement inpemailid=driver.findElement(By.xpath("//input[@id='emailAddress']"));
+ inpemailid.click();
+ 
+ 
+//Select all text (Ctrl + A), then delete (Backspace)
+ inpemailid.sendKeys(Keys.chord(Keys.CONTROL, "a"));  // Select all
+ inpemailid.sendKeys(Keys.BACK_SPACE); 
+ 
+ //
+ Thread.sleep(1000);
+ inpemailid.sendKeys(emailid);
+ 
+ Thread.sleep(1000);
+ 
+ 
+ //click on save
+ 
+ driver.findElement(By.xpath("//button[text()='Save']")).click();
+ 
+ String name="Profile updated successfully";
+ 
+ WebElement isdis=driver.findElement(By.xpath("//div[text()='Profile updated successfully']"));
+ if(isdis.isDisplayed())
+
+ {
+	 System.out.println("The name and email address has been successfully update.");
+ }
+	 
+	   
+   }
+   
+   
+   
+   
     
     
     
