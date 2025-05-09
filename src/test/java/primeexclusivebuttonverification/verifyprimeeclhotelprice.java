@@ -1,4 +1,4 @@
-package primeandexclusivehotelverify;
+package primeexclusivebuttonverification;
 
 import java.time.Duration;
 import java.util.List;

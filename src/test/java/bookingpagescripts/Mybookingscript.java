@@ -5,10 +5,13 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,7 +25,7 @@ import org.testng.annotations.Test;
 
 // 7-05-25
 
-public class mybookingscript {
+public class Mybookingscript {
 	
 	WebDriver driver;
 	
@@ -72,11 +75,7 @@ public class mybookingscript {
 		
 		WebElement elem=driver.findElement(By.xpath("//span[contains(@style, 'padding-left: 6px')]"));
 		Thread.sleep(100);
-		
-	
-	
-
-		   
+   
 	}
 	
 //	
@@ -545,10 +544,32 @@ inpnme.sendKeys(Keys.BACK_SPACE);
    
    
    @Test
-   void updatetheprofileimage() throws InterruptedException, AWTException
+   void updatetheprofileimage() throws InterruptedException, AWTException, IOException
    {
  //update the profile image as well ------------
 	   checkupcomingbookscenariocase();
+	   
+	   //call property class
+	   Properties property=new Properties();
+	   //file path
+	   
+	 //Getting file Path--user.dir point always to the current repo--
+		
+	 		String filepath=System.getProperty("user.dir")+"\\data\\example.properties";
+	 		//Read the file
+	 		
+	 		FileInputStream filen=new FileInputStream(filepath);
+	 		
+	 	//--Load the file call the property object
+	 		property.load(filen);
+	 		
+	     // close the file--
+	 		filen.close();
+	 		
+	 
+	 	      // Path to image file
+	 		String imagelink=property.getProperty("imageuploadpath");
+	 		
  
 	   Thread.sleep(1000);
 	  // Click on the SVG camera icon to open file upload dialog
@@ -559,11 +580,10 @@ inpnme.sendKeys(Keys.BACK_SPACE);
       Thread.sleep(1000);
 
       // Path to image file
-      String filePath = "C:\\Users\\Abhishek Pandey\\Downloads\\bidinnwa2.jpg";
-
+    
 
       // Copy file path to clipboard
-      StringSelection selection = new StringSelection(filePath);
+      StringSelection selection = new StringSelection(imagelink);
       Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
 
       // Use Robot to paste path and press Enter

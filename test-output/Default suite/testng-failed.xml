@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bookingpagescripts.mybookingscript">
+      <class name="bookingpagescripts.ratingformafterstay">
         <methods>
-          <include name="checkupcomingbookscenariocase"/>
+          <include name="teardown"/>
+          <include name="RateHotelformisworkornot"/>
         </methods>
-      </class> <!-- bookingpagescripts.mybookingscript -->
+      </class> <!-- bookingpagescripts.ratingformafterstay -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,5 +1,6 @@
 package bookingpagescripts;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import TaskLogin.LoginTasknew1;
 
 
 //8May2025**
@@ -79,42 +82,51 @@ public class ratingformafterstay {
    //My booking---
     
  
-    void mybookingsbutton() throws InterruptedException {
+    void mybookingsbutton() throws InterruptedException, IOException {
         Thread.sleep(1000);
 
+  
+        
         LoginButtonclick();
-
-    
+//        LoginTasknew1 obj=new LoginTasknew1();
+//    
+//      //call the login function from here--
+//      //Now to call the login function we have to make it public so that it can be call--
+//        
+//        obj.VerifyLoginButtonisworkornot();
+     
         driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
         Thread.sleep(1000);
 
-        // Click on 'Completed' tab
-        WebElement completedBtn = driver.findElement(By.xpath("(//button[contains(@class,'inline-flex items-center justify-center whitespace-nowrap')])[3]"));
-        completedBtn.click();
-    
-        Thread.sleep(1000);
-         driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
+
+         
+  //-------------------------------------------------
+         
+         driver.findElement(By.xpath("//button[text()='Completed']")).click();
          
         
-         Thread.sleep(1000);
-//        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);");
-       
-        //move to the hotel
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,1500)");
-        WebElement mvtohotel = driver.findElement(By.xpath("//h6[text()='1306242']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", mvtohotel);
-
-        
-        mvtohotel.click();
-
+ 		
+ 		WebElement element1 = driver.findElement(By.xpath("//div[@class=\"w-full h-auto rounded-0\"]"));
+ 		WebElement targetElement = driver.findElement(By.xpath("//h6[text()='1306242']"));
+ 		
+ 		JavascriptExecutor js = (JavascriptExecutor) driver;
+ 		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", targetElement);
+ 		
+ 		Thread.sleep(100);
+ 		targetElement.click();
+  
     }
     
     
     
     @Test
-    void RateHotelformisworkornot() throws InterruptedException
+    void RateHotelformisworkornot() throws InterruptedException, IOException
     {
+//    	Mybookingscript mb=new Mybookingscript();
+//    	mb.LoginButtonclick();
     	
+  
+		
     	mybookingsbutton();
     	Thread.sleep(1000);
         
