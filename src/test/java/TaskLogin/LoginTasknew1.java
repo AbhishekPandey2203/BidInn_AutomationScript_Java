@@ -28,19 +28,108 @@ import org.testng.annotations.Test;
 
 
 public class LoginTasknew1 {
-	WebDriver driver;
 	
-	@BeforeMethod
-	void callmethod() throws InterruptedException
-	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.get("https://www.bidinn.in/");
-		driver.manage().window().maximize();
-		Thread.sleep(500);
+	public WebDriver driver;
+	
+	
+	Properties property;
+	
+	
+//	🔹 Purpose in Your Code---
+//	This constructor:
+//	Initializes the properties object
+//	Loads the .properties file containing the credentials
+//	Makes it easier to call getUsername(), getPassword(), and getUrl() without loading the file manually every time
+
+	//***this is constructor smje---islye koi return type nhi h-- logically dekho--aur ek chej
+	//isko obj bnane pe call hoga automatically and help krega invoke krne m
+	// properties ko--
+	public LoginTasknew1() throws IOException
+	{  
+		property = new Properties();
+		//Getting file Path--user.dir point always to the current repo--
+		
+				String filepath=System.getProperty("user.dir")+"\\data\\example.properties";
+				//Read the file
+				
+				FileInputStream filen=new FileInputStream(filepath);
+				
+			//--Load the file call the property object
+				property.load(filen);
+				
+		    // close the file--
+				filen.close();
+		
 	}
 	
+	//-----------
+	public String getphoneno()
+	{
+		
+	
+	 return property.getProperty("mobileno");
+	 
+	}
+	
+	public String a()
+	{
+		
+	
+	 return property.getProperty("otpa");
+	 
+	}
+	
+	public String b()
+	{
+		
+	
+	 return property.getProperty("otpb");
+	 
+	}
+	public String c()
+	{
+		
+	
+	 return property.getProperty("otpc");
+	 
+	}
+	public String d()
+	{
+		
+	
+	 return property.getProperty("otpd");
+	 
+	}
+	public String e()
+	{
+		
+	
+	 return property.getProperty("otpe");
+	 
+	}
+	public String f()
+	{
+		
+	
+	 return property.getProperty("otpf");
+	 
+	}
+	
+
+
+	public WebDriver getDriver()
+	{
+		return driver;
+	}
+
 	public void VerifyLoginButtonisworkornot() throws InterruptedException, IOException
-	{    
+	{       
+		//making an object of class--
+		
+		LoginTasknew1 h1=new LoginTasknew1();
+			
+		
+	/*	
 		
 		//Using Properties concept--It is used to read the data from file
 		Properties property=new Properties();
@@ -68,10 +157,15 @@ public class LoginTasknew1 {
 		String e=property.getProperty("otpe");
 		String f=property.getProperty("otpf");
 		
-	
 		
+		*/	
+		driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://www.bidinn.in/");
+		driver.manage().window().maximize();
+		Thread.sleep(500);
 		String expectedName="Shyam";
-		 driver=new ChromeDriver();
+//		 driver=new ChromeDriver();
 		 
 		
 		
@@ -84,7 +178,7 @@ public class LoginTasknew1 {
 		
 		Thread.sleep(1000);
 		//sending number
-		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys(phone);
+		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys(h1.getphoneno());
 		
 		//click
 		driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
@@ -93,12 +187,12 @@ public class LoginTasknew1 {
 		
 		//sending otp
 		
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys(a);
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys(b);
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys(c);
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys(d);
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys(e);
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys(f);
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys(h1.a());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys(h1.b());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys(h1.c());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys(h1.d());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys(h1.e());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys(h1.f());
 		
 //		Thread.sleep(300);
 		
@@ -114,9 +208,7 @@ public class LoginTasknew1 {
 		
 		System.out.println("the name is "+elem.getText());
 		
-		
-
-		   
+	   
 	}
 	
 	
@@ -156,7 +248,7 @@ public class LoginTasknew1 {
 	//my booking
 	
 	@Test
-	void mybookingsButtonworkornot() throws InterruptedException
+	void mybookingsButtonworkornot() throws InterruptedException, IOException
 	{     
 		
 		VerifyLoginButtonisworkornot();

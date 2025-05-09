@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="23" total="24" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-09T13:47:54 IST" name="Default suite" finished-at="2025-05-09T13:48:09 IST" duration-ms="14768">
+  <suite started-at="2025-05-09T16:49:41 IST" name="Default suite" finished-at="2025-05-09T16:50:05 IST" duration-ms="24281">
     <groups>
     </groups>
-    <test started-at="2025-05-09T13:47:54 IST" name="Default test" finished-at="2025-05-09T13:48:09 IST" duration-ms="14768">
-      <class name="bookingpagescripts.ratingformafterstay">
-        <test-method signature="RateHotelformisworkornot()[pri:0, instance:bookingpagescripts.ratingformafterstay@4b2bac3f]" started-at="2025-05-09T13:47:54 IST" name="RateHotelformisworkornot" finished-at="2025-05-09T13:48:09 IST" duration-ms="14277" status="PASS">
+    <test started-at="2025-05-09T16:49:41 IST" name="Default test" finished-at="2025-05-09T16:50:05 IST" duration-ms="24281">
+      <class name="verifyparticularhotel.VerifyHotelDetailsPage">
+        <test-method is-config="true" signature="enterHotelname()[pri:0, instance:verifyparticularhotel.VerifyHotelDetailsPage@587e5365]" started-at="2025-05-09T16:49:41 IST" name="enterHotelname" finished-at="2025-05-09T16:49:47 IST" duration-ms="6165" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- RateHotelformisworkornot -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:bookingpagescripts.ratingformafterstay@4b2bac3f]" started-at="2025-05-09T13:48:09 IST" name="teardown" finished-at="2025-05-09T13:48:09 IST" duration-ms="429" status="PASS">
+        </test-method> <!-- enterHotelname -->
+        <test-method signature="verifyBookNowButtonwork()[pri:0, instance:verifyparticularhotel.VerifyHotelDetailsPage@587e5365]" started-at="2025-05-09T16:49:47 IST" name="verifyBookNowButtonwork" finished-at="2025-05-09T16:50:05 IST" duration-ms="17747" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- bookingpagescripts.ratingformafterstay -->
+        </test-method> <!-- verifyBookNowButtonwork -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:verifyparticularhotel.VerifyHotelDetailsPage@587e5365]" started-at="2025-05-09T16:50:05 IST" name="tearDown" finished-at="2025-05-09T16:50:05 IST" duration-ms="337" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- verifyparticularhotel.VerifyHotelDetailsPage -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

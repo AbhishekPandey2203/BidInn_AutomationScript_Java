@@ -18,7 +18,9 @@ import TaskLogin.LoginTasknew1;
 //8May2025**
 public class ratingformafterstay {
 
-	WebDriver driver;
+	public WebDriver driver;
+	
+	/*
 	
 	void LoginButtonclick() throws InterruptedException
 	{  
@@ -69,7 +71,7 @@ public class ratingformafterstay {
 		
 
 		   
-	}
+	}  */
 	
 ////	
     @AfterMethod
@@ -85,16 +87,14 @@ public class ratingformafterstay {
     void mybookingsbutton() throws InterruptedException, IOException {
         Thread.sleep(1000);
 
-  
+
+        LoginTasknew1 obj=new LoginTasknew1();
         
-        LoginButtonclick();
-//        LoginTasknew1 obj=new LoginTasknew1();
-//    
-//      //call the login function from here--
-//      //Now to call the login function we have to make it public so that it can be call--
-//        
-//        obj.VerifyLoginButtonisworkornot();
-     
+      //call the login function from here--
+      //Now to call the login function we have to make it public so that it can be call--
+        
+        obj.VerifyLoginButtonisworkornot();
+        driver=obj.getDriver();
         driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
         Thread.sleep(1000);
 
@@ -122,10 +122,7 @@ public class ratingformafterstay {
     @Test
     void RateHotelformisworkornot() throws InterruptedException, IOException
     {
-//    	Mybookingscript mb=new Mybookingscript();
-//    	mb.LoginButtonclick();
-    	
-  
+
 		
     	mybookingsbutton();
     	Thread.sleep(1000);
