@@ -1,4 +1,4 @@
-package homepagetest;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 //it is specific to the search box functionlity
-public class Searchbox {
+public class VerifySearchInputBox {
 	
 	
 	
@@ -43,7 +43,7 @@ public class Searchbox {
     
    //We will Update it--- on 22-04-25
 	@Test
-	void VerifySearchinput() throws InterruptedException
+	void verifySearchinput() throws InterruptedException
 	{     
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		  // City Name insertion.
@@ -107,7 +107,7 @@ public class Searchbox {
 	
 	
 	@Test
-	void VerifyHotelSearchisworkornot() throws InterruptedException
+	void verifyHotelSearchisworkornot() throws InterruptedException
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		  // Hotel name insertion

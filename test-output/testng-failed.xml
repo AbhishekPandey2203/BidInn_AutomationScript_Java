@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bookingpagescripts.ratingformafterstay">
+      <class name="bidinnUserWebAppTestScript.VerifyHotelListPage">
         <methods>
+          <include name="entercityintput"/>
+          <include name="verifyhotelnamedetail"/>
           <include name="teardown"/>
-          <include name="RateHotelformisworkornot"/>
         </methods>
-      </class> <!-- bookingpagescripts.ratingformafterstay -->
+      </class> <!-- bidinnUserWebAppTestScript.VerifyHotelListPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

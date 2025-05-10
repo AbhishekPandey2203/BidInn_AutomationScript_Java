@@ -1,4 +1,4 @@
-package verifynavigationandhotellistdetail;
+package bidinnUserWebAppTestScript;
 
 import static org.testng.Assert.assertNotEquals;
 
@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 // in this we try to to first search a particular city and then their hotel are been displayed ,now i try to change the city 
 //name and get 
 //31-03-25
-public class verifyhotellistdetail {
+public class VerifyHotelListPage {
 	
 	WebDriver driver;
 

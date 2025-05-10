@@ -1,4 +1,4 @@
-package primeexclusivebuttonverification;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.List;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 
 
 
-public class verifyprimeeclhotelprice {
+public class VerifyHomePagePrimeExclusiveButton {
 	
 	WebDriver driver;
 	@BeforeTest
@@ -47,7 +47,7 @@ public class verifyprimeeclhotelprice {
 //PrimeButton Work--------------------
 	 
 	@Test
-	void VerifyBidinnPrimeButtonworkornot() throws InterruptedException
+	void verifyBidinnPrimeButtonworkornot() throws InterruptedException
 	{    
 		
 		Thread.sleep(1000);
@@ -145,7 +145,7 @@ public class verifyprimeeclhotelprice {
 //Exclusive Button work--------------------------
 	
 	@Test
-	void VerifyBidinnExclusiveButtonworkornot() throws InterruptedException
+	void verifyBidinnExclusiveButtonworkornot() throws InterruptedException
 	{
 		
 		
@@ -241,7 +241,7 @@ public class verifyprimeeclhotelprice {
 //Regular Work-----------------------------------
 	
 	@Test
-	void VerifyBidinnRegularButtonworkornot() throws InterruptedException
+	void verifyBidinnRegularButtonworkornot() throws InterruptedException
 	{
 		
 		

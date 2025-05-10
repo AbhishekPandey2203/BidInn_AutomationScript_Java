@@ -1,4 +1,4 @@
-package bookingpagescripts;
+package bidinnUserWebAppTestScript;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -12,11 +12,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import TaskLogin.LoginTasknew1;
-
 
 //8May2025**
-public class ratingformafterstay {
+public class VerifyRatingFormWorkinBookingDetails {
 
 	public WebDriver driver;
 	
@@ -88,7 +86,7 @@ public class ratingformafterstay {
         Thread.sleep(1000);
 
 
-        LoginTasknew1 obj=new LoginTasknew1();
+        VerifyLoginSignupButton obj=new VerifyLoginSignupButton();
         
       //call the login function from here--
       //Now to call the login function we have to make it public so that it can be call--
@@ -120,7 +118,7 @@ public class ratingformafterstay {
     
     
     @Test
-    void RateHotelformisworkornot() throws InterruptedException, IOException
+    void rateHotelformisworkornot() throws InterruptedException, IOException
     {
 
 		

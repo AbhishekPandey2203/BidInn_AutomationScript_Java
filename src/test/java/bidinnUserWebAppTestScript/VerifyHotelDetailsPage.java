@@ -1,4 +1,4 @@
-package verifyparticularhotel;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.Set;
@@ -748,7 +748,7 @@ void enterHotelname() throws InterruptedException
   
 
 	@Test
-	void VerifyRecommendHotelStartBidBeforeLogin() throws InterruptedException
+	void verifyRecommendHotelStartBidBeforeLogin() throws InterruptedException
 	{  
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 
@@ -775,7 +775,7 @@ void enterHotelname() throws InterruptedException
 	}
 	
 	@Test
-	void VerifyRecommendHotelBidNowBeforeLogin() throws InterruptedException
+	void verifyRecommendHotelBidNowBeforeLogin() throws InterruptedException
 	{  
 		
 		
@@ -806,7 +806,7 @@ void enterHotelname() throws InterruptedException
 	//-------See More Review Work or not---------------
 	
 	@Test
-	void SeeMoreReviewworkornot() throws InterruptedException
+	void seeMoreReviewworkornot() throws InterruptedException
 	{    
 		String ans="All Reviews";
        Thread.sleep(2000);
@@ -841,7 +841,7 @@ void enterHotelname() throws InterruptedException
   
   
   @Test
-	void AllReviewworkornotinOverviewSection() throws InterruptedException
+	void allReviewworkornotinOverviewSection() throws InterruptedException
 	{    
 		String ans="All Reviews";
        Thread.sleep(2000);
@@ -878,7 +878,7 @@ void enterHotelname() throws InterruptedException
   //**********More Option**************
   
   @Test
-  void MoreOptionornot() throws InterruptedException
+  void moreOptionornot() throws InterruptedException
 	{    
 		String teststring="Room With Free Cancellation";
      Thread.sleep(2000);

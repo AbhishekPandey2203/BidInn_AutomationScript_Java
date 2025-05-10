@@ -1,4 +1,4 @@
-package paymentpagebooking;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class checkingmoreaddthanchoose {
+public class VerifyAddGuestButtonworkinmyBookingPage {
 	
 	WebDriver driver;
 	

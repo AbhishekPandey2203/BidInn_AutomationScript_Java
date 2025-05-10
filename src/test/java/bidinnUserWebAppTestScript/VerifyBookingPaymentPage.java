@@ -1,4 +1,4 @@
-package paymentpagebooking;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class paymentpagebooking {
+public class VerifyBookingPaymentPage {
 
 	WebDriver driver;
 	
@@ -200,7 +200,7 @@ public class paymentpagebooking {
 	
 
 @Test 
-void  MovetoBookingPageAfterclickingBooknowButton() throws InterruptedException
+void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException
 {  
   
 	       enterLoginCredential();  //function calling

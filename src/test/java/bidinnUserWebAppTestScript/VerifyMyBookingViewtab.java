@@ -1,4 +1,4 @@
-package bookingpagescripts;
+package bidinnUserWebAppTestScript;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 // 7-05-25
 
-public class Mybookingscript {
+public class VerifyMyBookingViewtab {
 	
 	WebDriver driver;
 	

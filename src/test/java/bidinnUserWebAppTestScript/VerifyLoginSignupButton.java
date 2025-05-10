@@ -1,4 +1,4 @@
-package TaskLogin;
+package bidinnUserWebAppTestScript;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 //Update the Task Login--as using property to send data and number
 
 
-public class LoginTasknew1 {
+public class VerifyLoginSignupButton {
 	
 	public WebDriver driver;
 	
@@ -44,7 +44,7 @@ public class LoginTasknew1 {
 	//***this is constructor smje---islye koi return type nhi h-- logically dekho--aur ek chej
 	//isko obj bnane pe call hoga automatically and help krega invoke krne m
 	// properties ko--
-	public LoginTasknew1() throws IOException
+	public VerifyLoginSignupButton() throws IOException
 	{  
 		property = new Properties();
 		//Getting file Path--user.dir point always to the current repo--
@@ -122,14 +122,14 @@ public class LoginTasknew1 {
 		return driver;
 	}
 
-	public void VerifyLoginButtonisworkornot() throws InterruptedException, IOException
+	public void verifyLoginButtonisworkornot() throws InterruptedException, IOException
 	{       
 		//making an object of class--
 		
-		LoginTasknew1 h1=new LoginTasknew1();
+		VerifyLoginSignupButton h1=new VerifyLoginSignupButton();
 			
 		
-	/*	
+	/*	When you use inside it in a function
 		
 		//Using Properties concept--It is used to read the data from file
 		Properties property=new Properties();
@@ -156,6 +156,9 @@ public class LoginTasknew1 {
 		String d=property.getProperty("otpd");
 		String e=property.getProperty("otpe");
 		String f=property.getProperty("otpf");
+		
+		When you inside it
+		
 		
 		
 		*/	
@@ -225,7 +228,7 @@ public class LoginTasknew1 {
 	void afterLogincheckNotificationisworkornot() throws InterruptedException, IOException
 	{     
 		
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 		String name="Notifications";
 		Thread.sleep(1000);
@@ -251,7 +254,7 @@ public class LoginTasknew1 {
 	void mybookingsButtonworkornot() throws InterruptedException, IOException
 	{     
 		
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 		
 		String value="AllUpcomingCompletedCancelled";
@@ -286,7 +289,7 @@ public class LoginTasknew1 {
 	@Test
 	void checkProfileButtonworkornot() throws InterruptedException, IOException
 	{   
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 		Thread.sleep(1000);
 		
@@ -317,11 +320,11 @@ public class LoginTasknew1 {
 	
 
 		@Test
-	void VerifyRecommendHotelStartBidAfterLogin() throws InterruptedException, IOException
+	void verifyRecommendHotelStartBidAfterLogin() throws InterruptedException, IOException
 	{     
 			
 			Thread.sleep(1000);
-			VerifyLoginButtonisworkornot();
+			verifyLoginButtonisworkornot();
 			Thread.sleep(500);
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		 
@@ -351,24 +354,20 @@ public class LoginTasknew1 {
 	}
 	
 	@Test
-	void VerifyRecommendHotelBidNowAfterLogin() throws InterruptedException, IOException
+	void verifyRecommendHotelBidNowAfterLogin() throws InterruptedException, IOException
 	{    
 		
 		String text="Make Your Bid Here!";
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 		
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 //		 driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
          
-			
-		 
-		 
+	
 			WebElement elem1 =driver.findElement(By.xpath("(//h6[text()='Welcome Offer!'])[1]"));
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
 
-     
-        
         
         driver.findElement(By.xpath("(//a[text()='Bid Now'])[1]")).click();
     
@@ -388,7 +387,7 @@ public class LoginTasknew1 {
 	void checkNotificationscrollworkingornot() throws InterruptedException, IOException
 	{ 
         Thread.sleep(1000);
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 	   // Click the notification button
 	    driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();
@@ -429,7 +428,7 @@ public class LoginTasknew1 {
 	void checkReadButtonisworkornotofNotification() throws InterruptedException, IOException
 	{
 		Thread.sleep(1000);
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 		
 		  // Click the notification button
@@ -495,7 +494,7 @@ public class LoginTasknew1 {
 	void checkDeleteButtonisworkornotwhennotreadofNotification() throws InterruptedException, IOException
 	{
 		 Thread.sleep(1000);
-			VerifyLoginButtonisworkornot();
+			verifyLoginButtonisworkornot();
 			Thread.sleep(500);
 	
 	        // Click the notification bell icon to open the panel
@@ -559,7 +558,7 @@ public class LoginTasknew1 {
 	void checkDeleteButtonWorksAfterRead() throws InterruptedException, IOException {
 	    Thread.sleep(1000); // Wait for the page to fully load
 
-		VerifyLoginButtonisworkornot();
+		verifyLoginButtonisworkornot();
 		Thread.sleep(500);
 	    // Open the notification panel
 	    driver.findElement(By.xpath("//button[contains(@class, 'border-stroke bg-gray-2 text-dark hover:text-primary mui-mfslm7')]")).click();

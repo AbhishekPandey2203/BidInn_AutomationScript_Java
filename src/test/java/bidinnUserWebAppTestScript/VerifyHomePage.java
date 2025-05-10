@@ -1,4 +1,4 @@
-package homepagetest;
+package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class HomePageTest {
+public class VerifyHomePage {
 	WebDriver driver;
 	@BeforeMethod
 	void commancode()
@@ -42,7 +42,7 @@ public class HomePageTest {
     
     //Bidinn-Logo
     @Test
-    void BidinnLogo() {
+    void bidinnLogo() {
         WebElement imageElement = driver.findElement(By.xpath("(//img[@alt='Bidinn'])[1]"));
         Assert.assertTrue(imageElement.isDisplayed(), "Logo is not displayed.");
         System.out.println("Bidinn Logo is verified. ");
@@ -52,7 +52,7 @@ public class HomePageTest {
     //Login Button--work
     
     @Test
-    void LoginTextLink() throws InterruptedException
+    void logintextLink() throws InterruptedException
     {    
     	String value="Auth screen : Bidinn - Bidinn";
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -73,7 +73,7 @@ public class HomePageTest {
     //Bidinn Backgroud Image-------------
     
     @Test
-    void BackgroundImage() {
+    void backgroundImage() {
         WebElement imageElement = driver.findElement(By.xpath("(//img[@alt='Bidinn'])[2]"));
         Assert.assertTrue(imageElement.isDisplayed(), "Background image is not displayed.");
     }
@@ -84,7 +84,7 @@ public class HomePageTest {
 	//Searching ----------------------Functionality
 	
 	@Test
-	void VerifySearch() throws InterruptedException
+	void verifySearch() throws InterruptedException
 	{     
 		String valu="Haridwar | Hotel Detail Page | bidinn.in";
 	     
@@ -150,7 +150,7 @@ public class HomePageTest {
 	
 	
 	@Test
-	void VerifyExploreCityCardsWorkornot() throws InterruptedException
+	void verifyExploreCityCardsWorkornot() throws InterruptedException
 	{  
 		//now check the slider
 		   String value="Delhi";
@@ -192,7 +192,7 @@ public class HomePageTest {
 	//check slider for explore city around you!!-------------
 	
 	@Test
-	void VerifyExploreCitySliderworkornot() throws InterruptedException
+	void verifyExploreCitySliderworkornot() throws InterruptedException
 	{     
 		  Thread.sleep(1000);
 		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
@@ -266,7 +266,7 @@ public class HomePageTest {
 	//sliderRecommedhotel
 	
 	@Test
-	void VerifyRecommendedHotelSliderworkornot() throws InterruptedException
+	void verifyRecommendedHotelSliderworkornot() throws InterruptedException
 	{      
 		Thread.sleep(1000);
 		//Scrolled case---------
@@ -307,7 +307,7 @@ public class HomePageTest {
 	
 	
 	@Test
-	void VerifyRecommendHotelStartBidBeforeLogin() throws InterruptedException
+	void verifyRecommendHotelStartBidBeforeLogin() throws InterruptedException
 	{  
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 
@@ -337,7 +337,7 @@ public class HomePageTest {
 	}
 	
 	@Test
-	void VerifyRecommendHotelBidNowBeforeLogin() throws InterruptedException
+	void verifyRecommendHotelBidNowBeforeLogin() throws InterruptedException
 	{  
 		
 		
@@ -426,7 +426,7 @@ public class HomePageTest {
 	
 	
 	@Test
-	void VerifyourBlogs() throws InterruptedException
+	void verifyourBlogs() throws InterruptedException
 	{
 		//verify the blog
 		  String val1="Show Less";
@@ -458,7 +458,7 @@ public class HomePageTest {
 	
 	
 	@Test
-	void VerifyDotsofOurBlog() throws InterruptedException
+	void verifyDotsofOurBlog() throws InterruptedException
 	{    
 		
 		String value="Monsoon Adventure in Kerala";
@@ -493,7 +493,7 @@ public class HomePageTest {
 	//Top Cities-------------------
 	
 	@Test
-	void TopCitieswork() throws InterruptedException
+	void topCitieswork() throws InterruptedException
 	{  
 		String titlehotel="Delhi";
 		Thread.sleep(4000);
@@ -543,7 +543,7 @@ public class HomePageTest {
 	//State in India--------------------
 	
 	@Test
-	void StatesofIndia() throws InterruptedException
+	void statesofIndia() throws InterruptedException
 	{  
 		String titlehotel="Delhi";
 		Thread.sleep(4000);
