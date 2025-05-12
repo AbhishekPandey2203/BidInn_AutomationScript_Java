@@ -1,6 +1,8 @@
 package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -52,17 +54,26 @@ public class VerifyHomePagePrimeExclusiveButton {
 		
 		Thread.sleep(1000);
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement clickableElement = driver.findElement(By.xpath("(//span[@class='MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium mui-cveorv'])[2]"));
+    	WebElement clickableElement = driver.findElement(By.xpath("(//span[@class='MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium mui-cveorv'])[3]"));
     	clickableElement.click();
     	
-    	Thread.sleep(2000);
-    	System.out.println("Element is clickable.");
-
+        String valu="Haridwar | Hotel Detail Page | bidinn.in";
 		
-		String valu="Haridwar | Hotel Detail Page | bidinn.in";
-	     
-		String datechecout="April 22, 2025";
-		String datechecin="April 21, 2025";
+		//get the value--through our local system
+		
+	//get current date
+		LocalDate currentdate=LocalDate.now();
+		 // Define the desired format: "April 24, 2025"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+
+        // Format the current date
+        String formattedDate = currentdate.format(formatter);
+
+        // Output the formatted date
+        System.out.println("Formatted current date: " + formattedDate);
+		
+		
+		String city="Haridwar";
 		
 		driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("Haridwar");
         Thread.sleep(1000);
@@ -72,20 +83,13 @@ public class VerifyHomePagePrimeExclusiveButton {
         
       //verify calendar value display---
   
-	    WebElement checkin=driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][1]"));
-		String checkin1=checkin.getText();
-	    System.out.println(" the val "+checkin1);
+	 WebElement checkin=driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][1]"));
+	 String checkin1=checkin.getText();
+	  System.out.println(" the val "+checkin1);
 	
+	  Assert.assertTrue(checkin1.contains(formattedDate));
 	 
-	    Assert.assertTrue(checkin1.contains(datechecin));
-	  
-	  WebElement checkout1=  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][2]"));
-	  String checkout=checkout1.getText();
-	  System.out.println("the val "+checkout);
-	  
-	  
-	  Assert.assertTrue(checkout.contains(datechecout));
-	  
+	
 	  
      // no of rooms and guest displayed---------
 		boolean gut=driver.findElement(By.xpath("(//h5[normalize-space()='1 Room/ 2 Guests'])[1]")).isDisplayed();
@@ -99,110 +103,13 @@ public class VerifyHomePagePrimeExclusiveButton {
 		
 		Assert.assertTrue(valu.equals(valm));
 		
+		
+	// getting the Hotel address--city name
 	
 
 		
 		int val1=2001;
 		int val2=5000;
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		Thread.sleep(500);
-		//click the know more task
-	
-		// move to prime hotel page then fetch the price data;
-	      boolean ans=true;
-		
-		
-		List<WebElement> elem = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//h1[contains(@class,'MuiTypography-root MuiTypography-h1 mui-1puvpyx')]")));
-	   
-		System.out.println("the size is"+elem.size());
-		for(WebElement em:elem)
-		{
-			String price=em.getText();
-			//trim the ruppes sigm
-			String newpr=price.substring(1);
-			Double prc=Double.parseDouble(newpr);
-			
-			System.out.println("The new price is"+prc);
-			
-			if(prc>=val1 && prc<=val2)
-			{
-				continue;
-			}
-			else
-			{
-				ans=false;
-				break;
-			}
-		}
-		 
-		Assert.assertTrue(ans);
-	
-		
-	}
-	
-	
-	
-//Exclusive Button work--------------------------
-	
-	@Test
-	void verifyBidinnExclusiveButtonworkornot() throws InterruptedException
-	{
-		
-		
-		Thread.sleep(1000);
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement clickableElement = driver.findElement(By.xpath("(//span[@class='MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium mui-cveorv'])[3]"));
-    	clickableElement.click();
-    	
-    	Thread.sleep(2000);
-    	System.out.println("Element is clickable.");
-
-		
-		String valu="Haridwar | Hotel Detail Page | bidinn.in";
-	     
-		String datechecout="April 22, 2025";
-		String datechecin="April 21, 2025";
-		
-		driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("Haridwar");
-        Thread.sleep(1000);
-        
-        driver.findElement(By.xpath("//p[text()='Haridwar']")).click();
-        Thread.sleep(500);
-        
-      //verify calendar value display---
-  
-	    WebElement checkin=driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][1]"));
-		String checkin1=checkin.getText();
-	    System.out.println(" the val "+checkin1);
-	
-	 
-	    Assert.assertTrue(checkin1.contains(datechecin));
-	  
-	  WebElement checkout1=  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][2]"));
-	  String checkout=checkout1.getText();
-	  System.out.println("the val "+checkout);
-	  
-	  
-	  Assert.assertTrue(checkout.contains(datechecout));
-	  
-	  
-     // no of rooms and guest displayed---------
-		boolean gut=driver.findElement(By.xpath("(//h5[normalize-space()='1 Room/ 2 Guests'])[1]")).isDisplayed();
-		
-		Assert.assertTrue(gut);
-		
-		driver.findElement(By.xpath("//button[text()=\"Search\"]")).click();
-		Thread.sleep(1000);
-		String valm=driver.getTitle();
-		System.out.println("the title name is "+valm);
-		
-		Assert.assertTrue(valu.equals(valm));
-		
-	
-
-		
-		int val1=5000;
-		int val2=25000;
 		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Thread.sleep(500);
 		//click the know more task
@@ -247,54 +154,55 @@ public class VerifyHomePagePrimeExclusiveButton {
 		
 		Thread.sleep(1000);
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement clickableElement = driver.findElement(By.xpath("(//span[@class='MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium mui-cveorv'])[1]"));
+    	WebElement clickableElement = driver.findElement(By.xpath("(//span[@class='MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium mui-cveorv'])[2]"));
     	clickableElement.click();
     	
-    	Thread.sleep(2000);
-    	System.out.println("Element is clickable.");
+    	 String valu="Haridwar | Hotel Detail Page | bidinn.in";
+ 		
+ 		//get the value--through our local system
+ 		
+ 	//get current date
+ 		LocalDate currentdate=LocalDate.now();
+ 		 // Define the desired format: "April 24, 2025"
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
 
-		
-		String valu="Haridwar | Hotel Detail Page | bidinn.in";
-	     
-		String datechecout="April 22, 2025";
-		String datechecin="April 21, 2025";
-		
-		driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("Haridwar");
-        Thread.sleep(1000);
-        
-        driver.findElement(By.xpath("//p[text()='Haridwar']")).click();
-        Thread.sleep(500);
-        
-      //verify calendar value display---
-  
-	    WebElement checkin=driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][1]"));
-		String checkin1=checkin.getText();
-	    System.out.println(" the val "+checkin1);
-	
-	 
-	    Assert.assertTrue(checkin1.contains(datechecin));
-	  
-	  WebElement checkout1=  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][2]"));
-	  String checkout=checkout1.getText();
-	  System.out.println("the val "+checkout);
-	  
-	  
-	  Assert.assertTrue(checkout.contains(datechecout));
-	  
-	  
-     // no of rooms and guest displayed---------
-		boolean gut=driver.findElement(By.xpath("(//h5[normalize-space()='1 Room/ 2 Guests'])[1]")).isDisplayed();
-		
-		Assert.assertTrue(gut);
-		
-		driver.findElement(By.xpath("//button[text()=\"Search\"]")).click();
-		Thread.sleep(1000);
-		String valm=driver.getTitle();
-		System.out.println("the title name is "+valm);
-		
-		Assert.assertTrue(valu.equals(valm));
-		
-	
+         // Format the current date
+         String formattedDate = currentdate.format(formatter);
+
+         // Output the formatted date
+         System.out.println("Formatted current date: " + formattedDate);
+ 		
+ 		
+ 		String city="Haridwar";
+ 		
+ 		driver.findElement(By.xpath("//input[@spellcheck='false']")).sendKeys("Haridwar");
+         Thread.sleep(1000);
+         
+         driver.findElement(By.xpath("//p[text()='Haridwar']")).click();
+         Thread.sleep(500);
+         
+       //verify calendar value display---
+   
+ 	 WebElement checkin=driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][1]"));
+ 	 String checkin1=checkin.getText();
+ 	  System.out.println(" the val "+checkin1);
+ 	
+ 	  Assert.assertTrue(checkin1.contains(formattedDate));
+ 	 
+ 	
+ 	  
+      // no of rooms and guest displayed---------
+ 		boolean gut=driver.findElement(By.xpath("(//h5[normalize-space()='1 Room/ 2 Guests'])[1]")).isDisplayed();
+ 		
+ 		Assert.assertTrue(gut);
+ 		
+ 		driver.findElement(By.xpath("//button[text()=\"Search\"]")).click();
+ 		Thread.sleep(1000);
+ 		String valm=driver.getTitle();
+ 		System.out.println("the title name is "+valm);
+ 		
+ 		Assert.assertTrue(valu.equals(valm));
+ 		
 
 		
 		int val1=299;

@@ -1,7 +1,10 @@
 package bidinnUserWebAppTestScript;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,6 +20,98 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class VerifyBookingPaymentPage {
+	
+	
+	
+	
+	
+//	/checking the error secanrio case--when we add guest more than choosen guest--
+	
+	Properties property;
+		
+		
+//		🔹 Purpose in Your Code---
+//		This constructor:
+//		Initializes the properties object
+//		Loads the .properties file containing the credentials
+//		Makes it easier to call getUsername(), getPassword(), and getUrl() without loading the file manually every time
+
+		//***this is constructor smje---islye koi return type nhi h-- logically dekho--aur ek chej
+		//isko obj bnane pe call hoga automatically and help krega invoke krne m
+		// properties ko--
+		public VerifyBookingPaymentPage() throws IOException
+		{  
+			property = new Properties();
+			//Getting file Path--user.dir point always to the current repo--
+			
+					String filepath=System.getProperty("user.dir")+"\\data\\example.properties";
+					//Read the file
+					
+					FileInputStream filen=new FileInputStream(filepath);
+					
+				//--Load the file call the property object
+					property.load(filen);
+					
+			    // close the file--
+					filen.close();
+			
+		}
+		
+		//-----------
+		public String getphoneno()
+		{
+			
+		
+		 return property.getProperty("mobileno");
+		 
+		}
+		
+		public String a()
+		{
+			
+		
+		 return property.getProperty("otpa");
+		 
+		}
+		
+		public String b()
+		{
+			
+		
+		 return property.getProperty("otpb");
+		 
+		}
+		public String c()
+		{
+			
+		
+		 return property.getProperty("otpc");
+		 
+		}
+		public String d()
+		{
+			
+		
+		 return property.getProperty("otpd");
+		 
+		}
+		public String e()
+		{
+			
+		
+		 return property.getProperty("otpe");
+		 
+		}
+		
+		public String f()
+		{
+			
+		
+		 return property.getProperty("otpf");
+		 
+		}
+		
+
 
 	WebDriver driver;
 	
@@ -41,7 +136,7 @@ public class VerifyBookingPaymentPage {
 		        WebElement HotelInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
 		        HotelInput.sendKeys(dumy);
 
-		        WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel)']")));
+		        WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel).']")));
 		        HotelOption.click();
 
 		        // Calendar choose - Check-in
@@ -165,16 +260,15 @@ public class VerifyBookingPaymentPage {
 	    }
 
 	
-	void enterLoginCredential() throws InterruptedException
+	void enterLoginCredential() throws InterruptedException, IOException
 	{  
-		
-		
+		VerifyBookingPaymentPage h1= new VerifyBookingPaymentPage();
 		//click on first
 		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).click();
 		
 		Thread.sleep(1000);
 		//sending number
-		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys("9988776655");
+		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys(h1.getphoneno());
 		
 		//click
 		driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
@@ -183,12 +277,12 @@ public class VerifyBookingPaymentPage {
 		
 		//sending otp
 		
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("5");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("4");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("7");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("6");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("9");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("8");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys(h1.a());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys(h1.b());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys(h1.c());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys(h1.d());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys(h1.e());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys(h1.f());
 		
 //		Thread.sleep(300);
 		
@@ -200,7 +294,7 @@ public class VerifyBookingPaymentPage {
 	
 
 @Test 
-void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException
+void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException, IOException
 {  
   
 	       enterLoginCredential();  //function calling
@@ -228,7 +322,7 @@ void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException
 
 
 @Test
-void checkingGuestInformationworkornotTitlecase() throws InterruptedException
+void checkingGuestInformationworkornotTitlecase() throws InterruptedException, IOException
 {  
 	
 	
@@ -298,7 +392,7 @@ void checkingGuestInformationworkornotTitlecase() throws InterruptedException
 
 
 @Test
-void checkaddguestbuttonwork() throws InterruptedException
+void checkaddguestbuttonwork() throws InterruptedException, IOException
 {
 	enterLoginCredential();
 	
@@ -399,7 +493,7 @@ System.out.println("User added successfully. Element size: " + elements.size());
 
 
 @Test
-void totalpayamountiscorrectornot() throws InterruptedException
+void totalpayamountiscorrectornot() throws InterruptedException, IOException
 {
 	enterLoginCredential();
 	
@@ -496,7 +590,7 @@ WebElement tat=driver.findElement(By.xpath("(//p[@class=\"MuiTypography-root Mui
 //choosing option case------------
 
 @Test
-void checkcouponbuttonworkornot() throws InterruptedException
+void checkcouponbuttonworkornot() throws InterruptedException, IOException
 {  
     enterLoginCredential();
 	
@@ -663,7 +757,7 @@ void checkcouponbuttonworkornot() throws InterruptedException
 
 
 @Test
-void checkHotelDetailInformation() throws InterruptedException {  
+void checkHotelDetailInformation() throws InterruptedException, IOException {  
     // Enter login credentials
     enterLoginCredential();
      
@@ -727,7 +821,7 @@ void checkHotelDetailInformation() throws InterruptedException {
 
 //My Bookings button working--
 @Test
-void mybookingsButtonworkornot() throws InterruptedException
+void mybookingsButtonworkornot() throws InterruptedException, IOException
 {     
 	enterLoginCredential();
 	
@@ -761,7 +855,7 @@ void mybookingsButtonworkornot() throws InterruptedException
 
 //checkProfilework or not
 @Test
-void checkProfileButtonworkornot() throws InterruptedException
+void checkProfileButtonworkornot() throws InterruptedException, IOException
 {  
 	enterLoginCredential();
 	Thread.sleep(1000);
@@ -922,7 +1016,7 @@ void addguestbuttonwork() throws InterruptedException
 
 //---------------
 @Test
- void updateGuestInformation() throws InterruptedException {
+ void updateGuestInformation() throws InterruptedException, IOException {
     // Log in to the application
     enterLoginCredential();
 
@@ -996,7 +1090,7 @@ void addguestbuttonwork() throws InterruptedException
 //check notification work or not---
  
 @Test
-void checkingthenotification() throws InterruptedException
+void checkingthenotification() throws InterruptedException, IOException
 {   
 	String name="Notifications";
 	

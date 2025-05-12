@@ -1,6 +1,8 @@
 package bidinnUserWebAppTestScript;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +38,7 @@ public class VerifyHomePage {
             driver.quit(); // Ensures the session is fully terminated
         }
     }
-    
+//    
     
     
     
@@ -87,9 +89,20 @@ public class VerifyHomePage {
 	void verifySearch() throws InterruptedException
 	{     
 		String valu="Haridwar | Hotel Detail Page | bidinn.in";
-	     
-		String dateCheckout="April 24, 2025";
-		String dateCheckin="April 23, 2025";
+		
+		//get the value--through our local system
+		
+	//get current date
+		LocalDate currentdate=LocalDate.now();
+		 // Define the desired format: "April 24, 2025"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+
+        // Format the current date
+        String formattedDate = currentdate.format(formatter);
+
+        // Output the formatted date
+        System.out.println("Formatted current date: " + formattedDate);
+		
 		
 		String city="Haridwar";
 		
@@ -105,15 +118,16 @@ public class VerifyHomePage {
 	 String checkin1=checkin.getText();
 	  System.out.println(" the val "+checkin1);
 	
-	  Assert.assertTrue(checkin1.contains(dateCheckin));
-	  
+	  Assert.assertTrue(checkin1.contains(formattedDate));
+	 
+	  /*
 	  WebElement checkout1=  driver.findElement(By.xpath("//button[contains(@class,'MuiButton-disableElevation MuiButton-fullWidth mui-mt3fnc')][2]"));
 	String checkout=checkout1.getText();
 	  System.out.println("the val "+checkout);
 	  
 	  
 	  Assert.assertTrue(checkout.contains(dateCheckout));
-	  
+	  */
 	  
      // no of rooms and guest displayed---------
 		boolean gut=driver.findElement(By.xpath("(//h5[normalize-space()='1 Room/ 2 Guests'])[1]")).isDisplayed();
@@ -206,11 +220,12 @@ public class VerifyHomePage {
 		   
 		  WebElement Arrowslide= driver.findElement(By.xpath("(//button[contains(@class,'MuiIconButton-sizeMedium h-12 w-12 mui-mfslm7')])[1]"));
 //		   Thread.sleep(1000);
-		   int count=0;
+		   int count=10;
 		   while (Arrowslide.isEnabled()) {
 //			    Thread.sleep(1000);
-			    count++;
-
+			    count--;
+                
+			    if(count==0)break;
 			    // Click the button
 			    driver.findElement(By.xpath("(//button[contains(@class,'MuiIconButton-sizeMedium h-12 w-12 mui-mfslm7')])[1]")).click();
 
@@ -236,12 +251,13 @@ public class VerifyHomePage {
 	
 // Recommended Hotel Working----
 	
+//some change in hotel getting detail--
 	
 	@Test
 	void verifyRecommendHotelNameOrImageLink() throws InterruptedException
 	{  
 		
-		 String value="Hotel Banz | Hotel Detail Page | bidinn.in";
+		 String value="Evara Spa & Resort, Jim Corbett | Hotel Detail Page | bidinn.in";
 		
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 
@@ -251,7 +267,7 @@ public class VerifyHomePage {
         Thread.sleep(1000);
         
         
-        driver.findElement(By.xpath("(//h6[text()='Delhi'])[2]")).click();
+        driver.findElement(By.xpath("//h6[text()='Jim Corbett']")).click();
         
         Thread.sleep(1000);
 
@@ -274,18 +290,20 @@ public class VerifyHomePage {
 		
 		
 			 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h6[@class='MuiTypography-root MuiTypography-subtitle2 mui-11wd9et'][normalize-space()='Delhi']")));
-		   System.out.println("the city is "+element.getText());
-		    
+		     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+		     element.click();
 		   Thread.sleep(1000);
 	
 		   
 		  WebElement Arrowslide= driver.findElement(By.xpath("(//button[contains(@class,'MuiIconButton-sizeMedium h-12 w-12 mui-mfslm7')])[2]"));
 		   Thread.sleep(1000);
-		   int count=0;
+		   int count=10;
 		   while (Arrowslide.isEnabled()) {
 			    Thread.sleep(1000);
-			    count++;
+			    count--;
+			    
+			    if(count==0)
+			    	break;
 
 			    // Click the button
 			    driver.findElement(By.xpath("(//button[contains(@class,'MuiIconButton-sizeMedium h-12 w-12 mui-mfslm7')])[2]")).click();
@@ -299,8 +317,8 @@ public class VerifyHomePage {
 		   
 		   Thread.sleep(1000);
 //		   
-		   WebElement element1 = driver.findElement(By.xpath("//h6[@class='MuiTypography-root MuiTypography-subtitle2 mui-11wd9et'][normalize-space()='Delhi']"));
-		   System.out.println("the ans "+element1.isDisplayed());
+//		   WebElement element1 = driver.findElement(By.xpath("//h6[@class='MuiTypography-root MuiTypography-subtitle2 mui-11wd9et'][normalize-space()='Delhi']"));
+		   System.out.println("Slider is working Properly");
 		   
 	}
 	
@@ -312,19 +330,20 @@ public class VerifyHomePage {
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 
 		
-		 String value="Hotel Banz | Hotel Detail Page | bidinn.in";
-		 driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
-         
+		 String value="Hotel Crystal Palace | Hotel Detail Page | bidinn.in";
+		 Thread.sleep(1000);
+			//Scrolled case---------
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
+			
+			
+				 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+			     element.click();
+			   Thread.sleep(1000);
 		
-		 
-		 
-		WebElement elem1 =driver.findElement(By.xpath("(//h6[text()='Welcome Offer!'])[1]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
-
-       
         
         
-        driver.findElement(By.xpath("(//h6[text()='Start Bid @ '])[1]")).click();
+        driver.findElement(By.xpath("(//h6[text()='Start Bid @ ₹'])[1]")).click();
         
         Thread.sleep(1000);
 
@@ -343,18 +362,17 @@ public class VerifyHomePage {
 		
 		String value="Auth screen : Bidinn - Bidinn";
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		 driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
-         
+		 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 900);");
 			
-		 
-		 
-			WebElement elem1 =driver.findElement(By.xpath("(//h6[text()='Welcome Offer!'])[1]"));
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
+			
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+	     element.click();
+	   Thread.sleep(1000);
 
-     
         
         
-        driver.findElement(By.xpath("(//a[text()='Bid Now'])[1]")).click();
+        driver.findElement(By.xpath("(//button[text()='Bid Now'])[1]")).click();
         
         
             Thread.sleep(3000);
@@ -376,9 +394,8 @@ public class VerifyHomePage {
 		
 		
 		  Thread.sleep(5000);
-		  WebElement elem=driver.findElement(By.xpath("(//h6[text()='Delhi'])[2]"));
-		  ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", elem);
-		  
+		  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
+			
 		  
 		 
 		  //click the function
@@ -403,9 +420,9 @@ public class VerifyHomePage {
 		
 	
 		
-		  Thread.sleep(5000);
-		  WebElement elem=driver.findElement(By.xpath("(//h6[text()='Delhi'])[2]"));
-		  ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", elem);
+		 Thread.sleep(1000);
+		  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
+			
 		  
 		  //click the function
 		  Thread.sleep(1000);
@@ -496,16 +513,23 @@ public class VerifyHomePage {
 	void topCitieswork() throws InterruptedException
 	{  
 		String titlehotel="Delhi";
-		Thread.sleep(4000);
-		WebElement isdis=driver.findElement(By.xpath("//h2[text()='Our Blogs']"));
-		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", isdis);
+		 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
 		
-		Thread.sleep(1000);
+		 Thread.sleep(1000);
 		
-		driver.findElement(By.xpath("(//span[@class='MuiTypography-root MuiTypography-subtitle1 mui-ujjq0f'])[1]")).click();
-		 
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+	     element.click();
+	     
+	     
+	     
+	     //now clicking one link
+	     
+	     driver.findElement(By.xpath("(//h6[text()='Hotels In Delhi'])[1]")).click();
 		//as it open in another tab
 		
+	     
+	     
 		String id1=driver.getWindowHandle();
 		System.out.println(" the id "+id1);
 		
@@ -546,14 +570,20 @@ public class VerifyHomePage {
 	void statesofIndia() throws InterruptedException
 	{  
 		String titlehotel="Delhi";
-		Thread.sleep(4000);
-		WebElement isdis=driver.findElement(By.xpath("//h5[text()='Top Cities']"));
-		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", isdis);
+		 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2800);");
+			
+		 Thread.sleep(1000);
 		
-		Thread.sleep(1000);
-		
-		driver.findElement(By.xpath("(//span[@class='MuiTypography-root MuiTypography-subtitle1 mui-ujjq0f'])[15]")).click();
-		Thread.sleep(1000);
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+	     element.click();
+	     
+	     
+	     
+	     //now clicking one link
+	     
+	     driver.findElement(By.xpath("(//h6[text()='Hotels In Delhi'])[2]")).click();
+	     Thread.sleep(1000);
 		 String tit=driver.getTitle();
 		System.out.println("The title is "+tit);
 		

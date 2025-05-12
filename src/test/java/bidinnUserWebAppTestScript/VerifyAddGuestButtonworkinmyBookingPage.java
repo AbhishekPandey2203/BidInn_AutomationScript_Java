@@ -1,7 +1,10 @@
 package bidinnUserWebAppTestScript;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,6 +25,100 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 	
 //checking the error secanrio case--when we add guest more than choosen guest--
 	
+Properties property;
+	
+	
+//	🔹 Purpose in Your Code---
+//	This constructor:
+//	Initializes the properties object
+//	Loads the .properties file containing the credentials
+//	Makes it easier to call getUsername(), getPassword(), and getUrl() without loading the file manually every time
+
+	//***this is constructor smje---islye koi return type nhi h-- logically dekho--aur ek chej
+	//isko obj bnane pe call hoga automatically and help krega invoke krne m
+	// properties ko--
+	public VerifyAddGuestButtonworkinmyBookingPage() throws IOException
+	{  
+		property = new Properties();
+		//Getting file Path--user.dir point always to the current repo--
+		
+				String filepath=System.getProperty("user.dir")+"\\data\\example.properties";
+				//Read the file
+				
+				FileInputStream filen=new FileInputStream(filepath);
+				
+			//--Load the file call the property object
+				property.load(filen);
+				
+		    // close the file--
+				filen.close();
+		
+	}
+	
+	//-----------
+	public String getphoneno()
+	{
+		
+	
+	 return property.getProperty("mobileno");
+	 
+	}
+	
+	public String a()
+	{
+		
+	
+	 return property.getProperty("otpa");
+	 
+	}
+	
+	public String b()
+	{
+		
+	
+	 return property.getProperty("otpb");
+	 
+	}
+	public String c()
+	{
+		
+	
+	 return property.getProperty("otpc");
+	 
+	}
+	public String d()
+	{
+		
+	
+	 return property.getProperty("otpd");
+	 
+	}
+	public String e()
+	{
+		
+	
+	 return property.getProperty("otpe");
+	 
+	}
+	public String f()
+	{
+		
+	
+	 return property.getProperty("otpf");
+	 
+	}
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@BeforeTest
 	void enterHotelname() throws InterruptedException
 	{       
@@ -36,7 +133,7 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 		        WebElement HotelInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
 		        HotelInput.sendKeys(dumy);
 
-		        WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel)']")));
+		        WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel).']")));
 		        HotelOption.click();
 
 		        // Calendar choose - Check-in
@@ -109,8 +206,9 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 	
 	 
 	 
-	void enterLoginCredential() throws InterruptedException
+	void enterLoginCredential() throws InterruptedException, IOException
 	{  
+		VerifyAddGuestButtonworkinmyBookingPage h1=new VerifyAddGuestButtonworkinmyBookingPage();
 		
 		
 		//click on first
@@ -118,7 +216,7 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 		
 		Thread.sleep(1000);
 		//sending number
-		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys("9988776655");
+		driver.findElement(By.xpath("//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart mui-1ooubvk']")).sendKeys(h1.getphoneno());
 		
 		//click
 		driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
@@ -127,12 +225,12 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 		
 		//sending otp
 		
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("5");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("4");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("7");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("6");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("9");
-		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("8");
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys(h1.a());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys(h1.b());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys(h1.c());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys(h1.d());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys(h1.e());
+		driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys(h1.f());
 		
 //		Thread.sleep(300);
 		
@@ -225,7 +323,7 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 	
 	
    @Test
-	void checkingaddmoreguestthannoofguest() throws InterruptedException
+	void checkingaddmoreguestthannoofguest() throws InterruptedException, IOException
 	{  
 	   String val="Cannot select more guests than the total available";
 		Thread.sleep(1000);
