@@ -1,28 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="8" passed="7" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-13T12:29:03 IST" name="Default suite" finished-at="2025-05-13T12:29:13 IST" duration-ms="10602">
+  <suite started-at="2025-05-13T16:50:58 IST" name="Suite" finished-at="2025-05-13T16:52:43 IST" duration-ms="105132">
     <groups>
     </groups>
-    <test started-at="2025-05-13T12:29:03 IST" name="Default test" finished-at="2025-05-13T12:29:13 IST" duration-ms="10602">
-      <class name="bidinnUserWebAppTestScript.VerifySearchInputBox">
-        <test-method is-config="true" signature="commancode()[pri:0, instance:bidinnUserWebAppTestScript.VerifySearchInputBox@26794848]" started-at="2025-05-13T12:29:03 IST" name="commancode" finished-at="2025-05-13T12:29:05 IST" duration-ms="2264" status="PASS">
+    <test started-at="2025-05-13T16:50:58 IST" name="Test" finished-at="2025-05-13T16:52:43 IST" duration-ms="105132">
+      <class name="bidinnUserWebAppTestScript.VerifyMyBookingViewtab">
+        <test-method signature="cancelbuttonworkornot()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:50:58 IST" name="cancelbuttonworkornot" finished-at="2025-05-13T16:51:09 IST" duration-ms="10999" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- commancode -->
-        <test-method signature="verifyHotelSearchisworkornot()[pri:0, instance:bidinnUserWebAppTestScript.VerifySearchInputBox@26794848]" started-at="2025-05-13T12:29:05 IST" name="verifyHotelSearchisworkornot" finished-at="2025-05-13T12:29:13 IST" duration-ms="7960" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        </test-method> <!-- cancelbuttonworkornot -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:09 IST" name="teardown" finished-at="2025-05-13T16:51:09 IST" duration-ms="385" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="cancelledtabcase()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:09 IST" name="cancelledtabcase" finished-at="2025-05-13T16:51:17 IST" duration-ms="8096" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelledtabcase -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:17 IST" name="teardown" finished-at="2025-05-13T16:51:18 IST" duration-ms="390" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="checkupcomingbookscenariocase()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:18 IST" name="checkupcomingbookscenariocase" finished-at="2025-05-13T16:51:28 IST" duration-ms="10734" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkupcomingbookscenariocase -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:28 IST" name="teardown" finished-at="2025-05-13T16:51:29 IST" duration-ms="388" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="completedtabcase()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:29 IST" name="completedtabcase" finished-at="2025-05-13T16:51:37 IST" duration-ms="7707" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- completedtabcase -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:37 IST" name="teardown" finished-at="2025-05-13T16:51:37 IST" duration-ms="354" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="mybookingsdetailsissameornotincompletedcase()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:37 IST" name="mybookingsdetailsissameornotincompletedcase" finished-at="2025-05-13T16:51:48 IST" duration-ms="11144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mybookingsdetailsissameornotincompletedcase -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:48 IST" name="teardown" finished-at="2025-05-13T16:51:48 IST" duration-ms="384" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="personalinforupdateornot()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:51:48 IST" name="personalinforupdateornot" finished-at="2025-05-13T16:52:05 IST" duration-ms="16959" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- personalinforupdateornot -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:52:05 IST" name="teardown" finished-at="2025-05-13T16:52:06 IST" duration-ms="344" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="updatetheprofileimage()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:52:06 IST" name="updatetheprofileimage" finished-at="2025-05-13T16:52:21 IST" duration-ms="15631" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updatetheprofileimage -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:52:21 IST" name="teardown" finished-at="2025-05-13T16:52:22 IST" duration-ms="364" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method signature="viewhotelpoliciesbuttonworkornot()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:52:22 IST" name="viewhotelpoliciesbuttonworkornot" finished-at="2025-05-13T16:52:43 IST" duration-ms="20766" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[expected [true] but found [false]]]>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='cc-1x4xm cc-sdm9t']"}
+  (Session info: chrome=136.0.7103.93)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [ccc8e076448843e27c8d025bbf7af834, findElement {using=xpath, value=//span[@class='cc-1x4xm cc-sdm9t']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.93, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\ABHISH~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50689}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50689/devtoo..., se:cdpVersion: 136.0.7103.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ccc8e076448843e27c8d025bbf7af834]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at org.testng.Assert.assertTrue(Assert.java:67)
-at bidinnUserWebAppTestScript.VerifySearchInputBox.verifyHotelSearchisworkornot(VerifySearchInputBox.java:167)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='cc-1x4xm cc-sdm9t']"}
+  (Session info: chrome=136.0.7103.93)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [ccc8e076448843e27c8d025bbf7af834, findElement {using=xpath, value=//span[@class='cc-1x4xm cc-sdm9t']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.93, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\ABHISH~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50689}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50689/devtoo..., se:cdpVersion: 136.0.7103.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ccc8e076448843e27c8d025bbf7af834
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at bidinnUserWebAppTestScript.VerifyMyBookingViewtab.viewhotelpoliciesbuttonworkornot(VerifyMyBookingViewtab.java:412)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -33,33 +111,23 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1575)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyHotelSearchisworkornot -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifySearchInputBox@26794848]" started-at="2025-05-13T12:29:13 IST" name="teardown" finished-at="2025-05-13T12:29:13 IST" duration-ms="348" status="PASS">
+        </test-method> <!-- viewhotelpoliciesbuttonworkornot -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:bidinnUserWebAppTestScript.VerifyMyBookingViewtab@198b6731]" started-at="2025-05-13T16:52:43 IST" name="teardown" finished-at="2025-05-13T16:52:43 IST" duration-ms="404" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- bidinnUserWebAppTestScript.VerifySearchInputBox -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- bidinnUserWebAppTestScript.VerifyMyBookingViewtab -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

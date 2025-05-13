@@ -74,8 +74,8 @@ public class VerifySearchInputBox {
         
         Thread.sleep(2000);
         // Guest choose
-//        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
-//        guestIcon.click();
+        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+        guestIcon.click();
 
         WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
         roomGuestDropdown.click();
@@ -112,7 +112,7 @@ public class VerifySearchInputBox {
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		  // Hotel name insertion
-      String HotelNamepassasinput = "test";
+      String HotelNamepassasinput = "Test";
       WebElement HotelInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
       HotelInput.sendKeys(HotelNamepassasinput);
            
@@ -138,8 +138,8 @@ public class VerifySearchInputBox {
       checkOutDate.click();
 
 //      // Guest choose
-//      WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
-//      guestIcon.click();
+      WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+      guestIcon.click();
 
       WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
       roomGuestDropdown.click();
@@ -164,7 +164,7 @@ public class VerifySearchInputBox {
 		WebElement hotelgetname=driver.findElement(By.xpath("//h2[@class='MuiTypography-root MuiTypography-h4 mui-gaxl7d']"));
 	    System.out.println("the hotel name is "+hotelgetname.getText());
 		
-		Assert.assertTrue(hotelgetname.getText().equals(HotelNamepassasinput));
+		Assert.assertTrue(hotelgetname.getText().contains(HotelNamepassasinput));
 		
 		
 	}

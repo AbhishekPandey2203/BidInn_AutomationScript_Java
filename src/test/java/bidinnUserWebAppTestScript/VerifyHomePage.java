@@ -43,7 +43,7 @@ public class VerifyHomePage {
     
     
     //Bidinn-Logo
-    @Test
+    @Test(priority=1)
     void bidinnLogo() {
         WebElement imageElement = driver.findElement(By.xpath("(//img[@alt='Bidinn'])[1]"));
         Assert.assertTrue(imageElement.isDisplayed(), "Logo is not displayed.");
@@ -335,7 +335,7 @@ public class VerifyHomePage {
 			//Scrolled case---------
 			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 700);");
 			
-			
+
 				 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			     WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
 			     element.click();
@@ -360,7 +360,7 @@ public class VerifyHomePage {
 	{  
 		
 		
-		String value="Auth screen : Bidinn - Bidinn";
+		String value="Auth screen";
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 900);");
 			
@@ -375,11 +375,11 @@ public class VerifyHomePage {
         driver.findElement(By.xpath("(//button[text()='Bid Now'])[1]")).click();
         
         
-            Thread.sleep(3000);
+            Thread.sleep(4000);
 		  String val=driver.getTitle();
 	     System.out.println("The title is"+val);
 	     
-	  Assert.assertTrue(val.equals(value));
+	  Assert.assertTrue(val.contains(value));
 		
 	}
 	

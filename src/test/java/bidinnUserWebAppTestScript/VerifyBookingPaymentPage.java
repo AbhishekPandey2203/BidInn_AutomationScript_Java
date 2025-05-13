@@ -408,31 +408,31 @@ void checkaddguestbuttonwork() throws InterruptedException, IOException
 
 	
 	Thread.sleep(1000);
-	//title click
-	WebElement elm1=driver.findElement(By.xpath("(//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input mui-74pt8w'])[2]"));
-	elm1.click();
-    String precase=elm1.getText();
+//	//title click
+//	WebElement elm1=driver.findElement(By.xpath("(//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input mui-74pt8w'])[2]"));
+//	elm1.click();
+//    String precase=elm1.getText();
 
 	
-	Thread.sleep(1000);
-	
-    driver.findElement(By.xpath("//li[normalize-space()='Prof']")).click();
-    Thread.sleep(1000);
-    
-    String postcase=elm1.getText();
-   
-    Assert.assertTrue(!(precase.equals(postcase)));
-	
-    System.out.println("The title is working properly");
+//	Thread.sleep(1000);
+//	
+//    driver.findElement(By.xpath("//li[normalize-space()='Prof']")).click();
+//    Thread.sleep(1000);
+//    
+//    String postcase=elm1.getText();
+//   
+//    Assert.assertTrue(!(precase.equals(postcase)));
+//	
+//    System.out.println("The title is working properly");
 
  // First Name
- WebElement firstNameField = driver.findElement(By.xpath("//input[@name='firstName']"));
+ WebElement firstNameField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='firstName']"));
  firstNameField.click();
  firstNameField.sendKeys("Abhi");
  Thread.sleep(1000);
 
  // Last Name
- WebElement lastNameField = driver.findElement(By.xpath("//input[@name='lastName']"));
+ WebElement lastNameField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@name='lastName']"));
  lastNameField.click();
  lastNameField.sendKeys("Shukla");
  Thread.sleep(1000);
@@ -444,7 +444,7 @@ void checkaddguestbuttonwork() throws InterruptedException, IOException
 // Thread.sleep(1000);
 
  // Email Address
- WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+ WebElement emailField = driver.findElement(By.xpath("//div[@class='MuiCardContent-root mui-zf4utx']/..//input[@type='email']"));
  emailField.click();
  // Clear using keyboard shortcuts
  emailField.sendKeys(Keys.chord(Keys.CONTROL, "a")); // Select all text

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bidinnUserWebAppTestScript.VerifySearchInputBox">
+      <class name="bidinnUserWebAppTestScript.VerifyHotelDetailsPage">
         <methods>
-          <include name="verifyHotelSearchisworkornot"/>
-          <include name="teardown"/>
-          <include name="commancode"/>
+          <include name="verifySearchedHotelNameDateGuestNoAndRoomNo"/>
+          <include name="enterHotelname"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- bidinnUserWebAppTestScript.VerifySearchInputBox -->
+      </class> <!-- bidinnUserWebAppTestScript.VerifyHotelDetailsPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
