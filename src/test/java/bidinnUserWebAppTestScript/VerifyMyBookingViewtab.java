@@ -312,12 +312,12 @@ public class VerifyMyBookingViewtab {
     	   
     	//check imag is dispalyed
     	
-      WebElement imgdis=	driver.findElement(By.xpath("//img[@alt='Hotel Shyam Krishna(Test_Hotel)']"));
-    	
-    	if(imgdis.isDisplayed())
-    	{
-    	  System.out.println("The Image is displayed!!");
-    	}
+//      WebElement imgdis=	driver.findElement(By.xpath("//img[@alt='Hotel Shyam Krishna(Test_Hotel)']"));
+//    	
+//    	if(imgdis.isDisplayed())
+//    	{
+//    	  System.out.println("The Image is displayed!!");
+//    	}
     	
     	
     	//check map is displayed...

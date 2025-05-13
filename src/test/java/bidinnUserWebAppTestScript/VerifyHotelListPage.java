@@ -27,11 +27,7 @@ public class VerifyHotelListPage {
 	WebDriver driver;
 
 	
-	
- 
-	  
-	
-    //28-05-25---Updated Hotel List Page--
+    //28-04-25---Updated Hotel List Page--
     
    
 	@BeforeMethod
@@ -68,11 +64,11 @@ public class VerifyHotelListPage {
         WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[8]")));
         checkOutDate.click();
 
-        // Guest choose
+//        // Guest choose
         WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
         guestIcon.click();
 
-        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
         roomGuestDropdown.click();
 
         // Increment buttons (room, adult, child)
@@ -99,7 +95,7 @@ public class VerifyHotelListPage {
 	            driver.quit(); // Ensures the session is fully terminated
 	        }
 	    }
-////----------------------------------- New City Case
+//Update the choose city with different city case
 	
 	@Test
 	void verifychangelocationgivenewlocationhotel() throws InterruptedException
@@ -185,15 +181,15 @@ public class VerifyHotelListPage {
       WebElement cityInput1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
       cityInput1.sendKeys(hotelname);
       
-      WebElement cityOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel)']")));
+      WebElement cityOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel).']")));
       cityOption.click();
          
 
       Thread.sleep(2000);
-      WebElement elem   =driver.findElement(By.xpath("//h2[text()='Hotel Shyam Krishna(Test_Hotel)']"));
-      System.out.println("The hotel name is "+elem.getText());
+       
+      System.out.println("The hotel name is "+ driver.getTitle());
          
-      Assert.assertTrue(elem.getText().contains(pc));
+      Assert.assertTrue(driver.getTitle().contains(pc));
 
 		
 		
@@ -575,7 +571,8 @@ public class VerifyHotelListPage {
 void twelevepercrating() throws InterruptedException
 {
 	Thread.sleep(1000);
-	
+	//clicking the budget button
+	driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
 	 List<WebElement> dataget = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[contains(@class,'Medium MuiButton-textSizeMedium MuiButton-colorSecondary MuiButton-disableElevation mui-jas1qx')]")));
@@ -622,9 +619,11 @@ void twelevepercrating() throws InterruptedException
   {      
 	  String name="Facebook";
 	  // Wait for the page to load
-	    Thread.sleep(3000);
-    
+	    Thread.sleep(1000);
+	  //clicking the budget button
+		driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
 	    // Click on the composition button
+		 Thread.sleep(1000);
 	    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
 	    compositionButton.click();
 	    Thread.sleep(500);
@@ -665,9 +664,11 @@ void twelevepercrating() throws InterruptedException
   {      
 	  String name="WhatsApp";
 	  // Wait for the page to load
-	    Thread.sleep(3000);
-    
+	    Thread.sleep(1000);
+	  //clicking the budget button
+	  		driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
 	    // Click on the composition button
+	  		 Thread.sleep(1000);
 	    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
 	    compositionButton.click();
 	    Thread.sleep(500);
@@ -704,9 +705,12 @@ void twelevepercrating() throws InterruptedException
   @Test
   void shareButtonworktwitter() throws InterruptedException
   {      
-	  String name="Title: X";
-	  // Wait for the page to load
-	    Thread.sleep(3000);
+	  String name="X";
+	  Thread.sleep(1000);
+	  //clicking the budget button
+	  		driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
+	    // Click on the composition button
+	  		 Thread.sleep(1000);
     
 	    // Click on the composition button
 	    WebElement compositionButton = driver.findElement(By.xpath("//button[@id='composition-button']"));
@@ -746,7 +750,7 @@ void twelevepercrating() throws InterruptedException
 	    }
 	    
 	    
-	    Assert.assertTrue(name.contains(wegetas1));
+	    Assert.assertTrue(wegetas1.contains(name));
   }
   
   
@@ -826,7 +830,7 @@ void twelevepercrating() throws InterruptedException
 	    Thread.sleep(1000);
 
 	    // Click to open Room/Guest dropdown
-	    WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+	    WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
 	    roomGuestDropdown.click();
 	    Thread.sleep(1000);
 

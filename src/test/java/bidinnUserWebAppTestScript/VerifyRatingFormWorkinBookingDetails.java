@@ -91,7 +91,7 @@ public class VerifyRatingFormWorkinBookingDetails {
       //call the login function from here--
       //Now to call the login function we have to make it public so that it can be call--
         
-        obj.VerifyLoginButtonisworkornot();
+        obj.verifyLoginButtonisworkornot();
         driver=obj.getDriver();
         driver.findElement(By.xpath("//button[text()='My Bookings']")).click();
         Thread.sleep(1000);

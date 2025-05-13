@@ -72,11 +72,12 @@ public class VerifySearchInputBox {
         WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[8]")));
         checkOutDate.click();
         
+        Thread.sleep(2000);
         // Guest choose
-        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
-        guestIcon.click();
+//        WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+//        guestIcon.click();
 
-        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+        WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
         roomGuestDropdown.click();
 
         // Increment buttons (room, adult, child)
@@ -111,11 +112,12 @@ public class VerifySearchInputBox {
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		  // Hotel name insertion
-      String HotelNamepassasinput = "Hotel Shyam Krishna(Test_Hotel)";
+      String HotelNamepassasinput = "test";
       WebElement HotelInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@spellcheck='false']")));
       HotelInput.sendKeys(HotelNamepassasinput);
-
-      WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel)']")));
+           
+      Thread.sleep(1000);
+      WebElement HotelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Hotel Shyam Krishna(Test_Hotel).']")));
       HotelOption.click();
 
       // Calendar choose - Check-in
@@ -135,11 +137,11 @@ public class VerifySearchInputBox {
       WebElement checkOutDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@class='rdrDay'])[5]")));
       checkOutDate.click();
 
-      // Guest choose
-      WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
-      guestIcon.click();
+//      // Guest choose
+//      WebElement guestIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")));
+//      guestIcon.click();
 
-      WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Room/Guest']")));
+      WebElement roomGuestDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='No. of Rooms/Guests']")));
       roomGuestDropdown.click();
 
       // Increment buttons (room, adult, child)
