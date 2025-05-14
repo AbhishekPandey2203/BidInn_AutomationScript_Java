@@ -3,12 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" parallel="classes" name="Test(failed)">
     <classes>
-      <class name="bidinnUserWebAppTestScript.VerifyMyBookingViewtab">
+      <class name="bidinnUserWebAppTestScript.VerifyLoginSignupButton">
         <methods>
+          <include name="verifyRecommendHotelBidNowAfterLogin"/>
           <include name="teardown"/>
-          <include name="viewhotelpoliciesbuttonworkornot"/>
+          <include name="verifyRecommendHotelStartBidAfterLogin"/>
         </methods>
-      </class> <!-- bidinnUserWebAppTestScript.VerifyMyBookingViewtab -->
+      </class> <!-- bidinnUserWebAppTestScript.VerifyLoginSignupButton -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

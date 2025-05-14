@@ -3,8 +3,9 @@
 <suite name="Suite" parallel="false">
   <test name="Test" parallel="classes" thread-count="2">
     <classes>
-      <class name="bidinnUserWebAppTestScript.VerifyMyBookingViewtab"/>
-     
+      <class name="bidinnUserWebAppTestScript.VerifyRatingFormWorkinBookingDetails"/>
+          <class name="bidinnUserWebAppTestScript.VerifyLoginSignupButton"/>
+   
     </classes>
   </test>
 </suite>

@@ -341,7 +341,7 @@ public class VerifyLoginSignupButton {
        
         
         
-        driver.findElement(By.xpath("(//h6[text()='Start Bid @ '])[1]")).click();
+        driver.findElement(By.xpath("(//h6[text()='Start Bid @ ₹'])[1]")).click();
         
         Thread.sleep(1000);
 
@@ -363,13 +363,15 @@ public class VerifyLoginSignupButton {
 		
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 //		 driver.findElement(By.xpath("//span[@class='cc-1x4xm cc-sdm9t']")).click();
-         
-	
+           
+		 
+		   ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 900);");
+//	
 			WebElement elem1 =driver.findElement(By.xpath("(//h6[text()='Welcome Offer!'])[1]"));
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem1);
 
         
-        driver.findElement(By.xpath("(//a[text()='Bid Now'])[1]")).click();
+        driver.findElement(By.xpath("(//button[text()='Bid Now'])[1]")).click();
     
             Thread.sleep(3000);
 		
