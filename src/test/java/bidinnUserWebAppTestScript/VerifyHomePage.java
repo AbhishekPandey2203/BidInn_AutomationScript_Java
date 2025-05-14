@@ -35,7 +35,7 @@ public class VerifyHomePage {
     @AfterMethod
     void teardown() {
         if (driver != null) {
-            driver.quit(); // Ensures the session is fully terminated
+            driver.quit(); 
         }
     }
 //    
@@ -65,7 +65,7 @@ public class VerifyHomePage {
     	
     	String val=driver.getTitle();
     	
-    	System.out.println("the title "+val);
+    	System.out.println("the FOR TEST title "+val);
     	
     	Assert.assertTrue(value.equals(val));
     }

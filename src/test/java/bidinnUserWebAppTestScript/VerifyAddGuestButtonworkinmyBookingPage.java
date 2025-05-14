@@ -28,15 +28,7 @@ public class VerifyAddGuestButtonworkinmyBookingPage {
 Properties property;
 	
 	
-//	🔹 Purpose in Your Code---
-//	This constructor:
-//	Initializes the properties object
-//	Loads the .properties file containing the credentials
-//	Makes it easier to call getUsername(), getPassword(), and getUrl() without loading the file manually every time
 
-	//***this is constructor smje---islye koi return type nhi h-- logically dekho--aur ek chej
-	//isko obj bnane pe call hoga automatically and help krega invoke krne m
-	// properties ko--
 	public VerifyAddGuestButtonworkinmyBookingPage() throws IOException
 	{  
 		property = new Properties();

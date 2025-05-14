@@ -18,8 +18,6 @@ import org.testng.annotations.Test;
 public class TestBid2 {
 	    
     WebDriver driver;
-    
-    
         @BeforeMethod(alwaysRun=true)   //mean humsa chlega
         void commoncode() throws InterruptedException
         {
