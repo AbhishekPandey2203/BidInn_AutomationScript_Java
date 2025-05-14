@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="false">
-  <test name="Test" parallel="classes" thread-count="2">
+<suite parallel="classes" name="HotelierParallelExecution">
+  <test thread-count="5" parallel="classes" name="TestScript">
     <classes>
-      <class name="bidinnUserWebAppTestScript.VerifyRatingFormWorkinBookingDetails"/>
-          <class name="bidinnUserWebAppTestScript.VerifyLoginSignupButton"/>
-   
+      <class name="bidinnUserWebAppTestScript.VerifyHomePage"/>
+      	<class name="bidinnUserWebAppTestScript.VerifyHotelListPage"/>
     </classes>
-  </test>
-</suite>
+  </test> <!-- TestScript -->
+</suite> <!-- HotelierParallelExecution -->

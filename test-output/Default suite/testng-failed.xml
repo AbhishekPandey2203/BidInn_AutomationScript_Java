@@ -3,12 +3,20 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bidinnUserWebAppTestScript.VerifyLoginSignupButton">
+      <class name="bidinnUserWebAppTestScript.VerifyBookingPaymentPage">
         <methods>
-          <include name="verifyRecommendHotelBidNowAfterLogin"/>
-          <include name="teardown"/>
+          <include name="totalpayamountiscorrectornot"/>
+          <include name="tearDown"/>
+          <include name="checkingGuestInformationworkornotTitlecase"/>
+          <include name="enterHotelname"/>
+          <include name="checkcouponbuttonworkornot"/>
+          <include name="checkaddguestbuttonwork"/>
+          <include name="updateGuestInformation"/>
+          <include name="mybookingsButtonworkornot"/>
+          <include name="checkingthenotification"/>
+          <include name="movetoBookingPageAfterclickingBooknowButton"/>
         </methods>
-      </class> <!-- bidinnUserWebAppTestScript.VerifyLoginSignupButton -->
+      </class> <!-- bidinnUserWebAppTestScript.VerifyBookingPaymentPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

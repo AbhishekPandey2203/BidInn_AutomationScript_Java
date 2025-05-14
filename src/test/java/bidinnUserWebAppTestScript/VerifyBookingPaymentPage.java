@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -122,7 +123,7 @@ public class VerifyBookingPaymentPage {
 	   String displayedHotelName="";
 	   String roomCountDetail="";
 	
-	@BeforeTest
+	@BeforeMethod
 	void enterHotelname() throws InterruptedException
 	{       
 
@@ -217,22 +218,7 @@ public class VerifyBookingPaymentPage {
 			        By.xpath("(//h4[@class='MuiTypography-root MuiTypography-h4 mui-1nq9l8w'])[4]"))
 			    ).getText().trim();
 
-			
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
-		        
+
 		      
 		        //clicking the Book now button----------------
 		        
@@ -293,7 +279,7 @@ public class VerifyBookingPaymentPage {
 }
 	
 
-@Test 
+@Test (priority=1)
 void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException, IOException
 {  
   
@@ -321,7 +307,7 @@ void  movetoBookingPageAfterclickingBooknowButton() throws InterruptedException,
  }
 
 
-@Test
+@Test(priority=2)
 void checkingGuestInformationworkornotTitlecase() throws InterruptedException, IOException
 {  
 	
